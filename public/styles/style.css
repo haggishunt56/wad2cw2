@@ -1,0 +1,15 @@
+body {
+  background-color: #e3e3e3;
+}
+
+body .wellbeing-body {
+  font-size: 1em;
+  margin-bottom: 0.1em;
+  color: #090909;
+}
+
+header {
+  background-color: lightgray;
+  margin-top: 3cm;
+  margin-bottom: 3cm;
+}

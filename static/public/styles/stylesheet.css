@@ -1,0 +1,16 @@
+body {
+  background-color: #e3e3e3;
+}
+
+header {
+  background-color: lightgray;
+  margin-top: 3cm;
+  margin-bottom: 3cm;
+}
+
+.wellbeing-body {
+  font-size: 1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 0.1em;
+  color: #090909;
+}
