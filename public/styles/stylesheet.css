@@ -4,12 +4,28 @@ body {
 }
 
 header {
-  background-color: lightgray;
+  background-color: #ababab;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-.wellbeing-body {
+nav {
+  background-color: #29C2A3;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+footer {
+  background-color: #ababab;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+p {
+  margin: 0;
+}
+
+p .wellbeing-body {
   font-size: 1em;
   margin-bottom: 0.1em;
   color: #090909;
