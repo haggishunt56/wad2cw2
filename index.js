@@ -29,6 +29,17 @@ app.use((err, req, res, next) => {
 const nedb = require('nedb');
 const db = new nedb({filename:'users.db', autoload:true});
 
+db.insert({
+    username:'haggishunt56',
+    password:'password'
+}, function(err, newDoc){
+    if(err) {
+        console.log('error',err);
+    } else {
+        console.log('document inserted',newDoc);
+    }
+});
+
 const authenticationRouter = require('./routes/auth');
 app.use('/', authenticationRouter);
 
