@@ -1,18 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/controllers.js");
+const {login, verify} = require('../auth/auth')
 
 router.get("/", controller.landing_page);
+router.get("/logintest", verify, (req, res) => {
+    res.send("logged in!");
+});
 
-router.get("/register", controller.register);
+// TODO - auth routes and controllers in separate docs
+router.get("/register", controller.register_page);
 
-router.get("/signin", controller.sign_in);
+router.post("/register", controller.register_new_user)
 
-// router.get("/guestbook", controller.entries_list);
+router.get("/login", controller.log_in_page);
 
-// router.get("/new", controller.new_entry);
-
-// router.get("/about", controller.about_page);
+router.post("/login", login, controller.log_in_submit);
 
 router.use(controller.notFound);
 

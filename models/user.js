@@ -1,17 +1,10 @@
-const db = require("nedb");
+const nedb = require("nedb");
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
 class UserDAO {
     constructor(databaseFilePath) {
-        if (databaseFilePath) {
-            this.db = new Datastore({
-                filename: databaseFilePath,
-                autoload: true
-            });
-        } else {
-            this.db = new Datastore();
-        }
+        this.db = new nedb({filename:'../users.db', autoload:true});
     }
     // for the demo the password is the bcrypt of the user name
     init() {

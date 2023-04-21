@@ -6,30 +6,49 @@ exports.serverError= function(err, req, res, next) {
 }
 
 exports.landing_page = function(req, res) {
-    // res.status(200);
-    // console.log("----------------------")
-    // console.log(req)
-    // console.log("----------------------")
-    // console.log(res)
-    // console.log("----------------------")
     res.render('home', {
-        'title': 'MyWellbeingApp - Home'
+        'title': 'Home'
     });
-    //todo error handling
 }
 
-// exports.entries_list = function(req, res) { 
-//    res.send('<h1>Guestbook Messages</h1><p>Not yet implemented:will show a list of guest book entries.</p>'); 
-// } 
+exports.register_page = function(req, res) {
+    res.render('register', {
+        'title': 'Register account'
+    });
+}
 
-// exports.new_entry = function(req, res) {     
-//     res.send('<h1>Not yet implemented: show a new entry page.</h1>'); 
-// }
+exports.register_new_user = function(req, res) {
+    const userDao = require('../models/user.js');
+    const username = req.body.username;
+    const password = req.body.password;
 
-// exports.about_page= function(req, res) { 
-//     res.status(200);  
-//     res.redirect('/about.html');
-// }
+    if (!username || !password) {
+        res.status(401).send('Incorrect username or password.');
+        return;
+    }
+
+    userDao.lookup(username, function(err, u) {
+        if (u) {
+            res.status(400).send("Error: User " + username + " already exists!");
+            return;
+        }
+        userDao.create(username, password);
+        console.log("register user", username, "password", password);
+        res.redirect('/login'); //todo - message on screen that the account is created
+    });
+}
+
+exports.log_in_page = function(req, res) {
+    res.render('login', {
+        'title': 'Log in'
+    });
+}
+
+exports.log_in_submit = function(req, res, next) {
+    res.render("/", {
+        title: "Logged in!",
+    });
+}
 
 exports.notFound= function(req, res) { 
     res.status(404); 
