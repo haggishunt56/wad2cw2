@@ -7,11 +7,11 @@ const {verify} = require('../auth/auth')
 
 router.get("/", controller.landing_page);
 router.get("/logintest", verify, (req, res) => {
-    console.log(req.user);
-    if(req.user) {
+    // console.log(req);
+    if(req.cookies) {
         res.send("logged in!");
     } else {
-        res.redirect("/login");
+        res.send("NOT logged in");
     }
 });
 

@@ -22,7 +22,7 @@ exports.login = function (req, res, next) {
                     let payload = { username: user.username };
                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
                     res.cookie("jwt", accessToken);
-                    
+
                     // pass to the callback function
                     next();
                 } else {
@@ -39,9 +39,10 @@ exports.verify = function (req, res, next) {
     if (!accessToken) {
         return res.redirect("login");
     }
-    let payload;
     try {
-        payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+        const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+        console.log("payload:")
+        console.log(payload)
         next();
     } catch (e) {
         //if an error occurred return request unauthorized error
