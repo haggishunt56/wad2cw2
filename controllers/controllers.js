@@ -17,13 +17,13 @@ exports.register_new_user = function(req, res) {
     const password = req.body.password;
 
     if (!username || !password) {
-        res.status(401).send('Please provide a username and password');
+        res.status(401).send('Please provide a username and password'); // todo - render webpage
         return;
     }
 
     userDao.lookup(username, function(err, u) {
         if (u) {
-            res.status(400).send("Error: User " + username + " already exists!");
+            res.status(400).send("Error: User " + username + " already exists!"); // todo - render webpage
             return;
         }
         userDao.create(username, password);

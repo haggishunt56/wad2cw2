@@ -30,17 +30,13 @@ router.post("/login", login, (req, res) => {
 
 // 404 handler
 router.use((req, res) => { 
-    res.status(404); 
-    res.type('text/plain');
-    res.send('404 Not found.'); // todo - render a page
+    res.status(404).render("404");
 });
 
 // 500 error handler
 router.use((err, req, res, next) => {
     console.error(err);
-    res.status(500);
-    res.type('text/plain'); 
-    res.send('Internal Server Error.'); // todo - render a page
+    res.status(500).render("500");
 });
 
 module.exports = router;
