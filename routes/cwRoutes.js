@@ -7,10 +7,14 @@ const {verify} = require('../auth/auth')
 
 router.get("/", controller.landing_page);
 router.get("/logintest", verify, (req, res) => {
-    res.send("logged in!");
+    console.log(req.user);
+    if(req.user) {
+        res.send("logged in!");
+    } else {
+        res.redirect("/login");
+    }
 });
 
-// TODO - auth routes and controllers in separate docs
 router.get("/register", controller.register_page);
 
 router.post("/register", controller.register_new_user)
@@ -18,7 +22,10 @@ router.post("/register", controller.register_new_user)
 router.get("/login", controller.log_in_page);
 
 router.post("/login", login, (req, res) => {
-    if (req.user) {
+    console.log("login callback function running...");
+    console.log("jwt: " + req.cookies);
+    
+    if (req.cookies) {
         res.send("logged in!"); // todo - direct to correct page
     } else {
         res.status(401).send("Unauthorized"); // authentication failed

@@ -16,19 +16,18 @@ app.use(
     express.static(__dirname + '/public')
 );
 
+// session cookie
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
 // parse form input from user
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
-// set view enging
+// set view engine
 const mustache = require('mustache-express');
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
-
-app.use((err, req, res, next) => {
-    console.error(err)
-    res.status(500).send('Something broke!')
-})
 
 // instantiate database
 const nedb = require('nedb');
@@ -37,10 +36,6 @@ const db = new nedb({filename:'users.db', autoload:true});
 // create routes file
 const applicationRouter = require('./routes/cwRoutes');
 app.use('/', applicationRouter); 
-
-// session cookie
-const cookieParser = require('cookie-parser')
-app.use(cookieParser())
 
 // start server
 app.listen(3000, () => {

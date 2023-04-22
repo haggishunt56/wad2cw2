@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const userModel = require('../models/user');
 const jwt = require("jsonwebtoken");
 
+// provide user with an access token if they supply the correct login credentials.
 exports.login = function (req, res, next) {
     let username = req.body.username;
     let password = req.body.password;
@@ -22,22 +23,21 @@ exports.login = function (req, res, next) {
                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
                     res.cookie("jwt", accessToken);
                     
-                    //and then pass onto the next middleware
+                    // pass to the callback function
                     next();
                 } else {
-                    return res.render("login"); // todo - display error on page
+                    return res.render("login"); // todo - display message on page
                 }
             });
         }
     });
-    next()
 }
 
-// this function is used to protect certain routes. User must be logged in to access them
+// this function is used to protect certain routes. If user is not logged in they are redirected to login screen.
 exports.verify = function (req, res, next) {
-    let accessToken = req.cookies.jwt;
+    const accessToken = req.cookies ? req.cookies.jwt : null; // if req.cookies doesn't exist, setting req.cookies.jwt causes an error.
     if (!accessToken) {
-        return res.status(403).send();
+        return res.redirect("login");
     }
     let payload;
     try {
