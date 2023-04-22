@@ -1,7 +1,7 @@
 const userDao = require('../models/user.js');
 
 exports.landing_page = function(req, res) {
-    res.render('home', {
+    res.render('landing', {
         'title': 'Home'
     });
 }

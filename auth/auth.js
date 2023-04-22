@@ -13,13 +13,12 @@ exports.login = function (req, res, next) {
             return res.status(500).send();
         } else if (!user) {
             console.log('Incorrect username or password.');
-            return res.status(401).send();
+            return res.status(401).send(); // todo - res.render("register")?
         } else {
             // compare provided password with stored password
             bcrypt.compare(password, user.password, function (err, result) {
                 if (result) {
-                    console.log("Correct password provided");
-                    let payload = { username: user.username };
+                    let payload = { username: username };
                     let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
                     res.cookie("jwt", accessToken);
 

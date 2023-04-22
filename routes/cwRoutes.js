@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/controllers.js");
-const authController = require("../auth/auth")
 const {login} = require('../auth/auth')
 const {verify} = require('../auth/auth')
 
 router.get("/", controller.landing_page);
 router.get("/logintest", verify, (req, res) => {
-    // console.log(req);
     if(req.cookies) {
         res.send("logged in!");
     } else {
@@ -22,14 +20,11 @@ router.post("/register", controller.register_new_user)
 router.get("/login", controller.log_in_page);
 
 router.post("/login", login, (req, res) => {
-    console.log("login callback function running...");
-    console.log("jwt: " + req.cookies);
-    
     if (req.cookies) {
         res.send("logged in!"); // todo - direct to correct page
     } else {
-        res.status(401).send("Unauthorized"); // authentication failed
-        //todo - send to login page
+        res.render("login"); // authentication failed
+        //todo - display error on login page
     }
 });
 
