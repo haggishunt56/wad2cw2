@@ -1,9 +1,11 @@
 body {
   background-color: #eeeeee;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
+  position: relative;
   background-color: #cccccc;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -11,8 +13,34 @@ header {
 
 nav {
   background-color: #29C2A3;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  width: 90%;
+  height: 5em;
+  padding: 0 5%;
+}
+
+nav.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+nav span.flex-item {
+  display: inline;
+  height: 1em;
+  padding: 2em 0;
+  margin: 0 0.2em;
+}
+
+nav span.flex-item:hover {
+  border-bottom: 0.5em solid #eeeeee;
+  /* todo - animate? */
+  padding-bottom: 1.5em;
+}
+
+nav a {
+  color: #090909;
+  padding: 2em 0.5em;
+  text-decoration: none;
 }
 
 footer {
@@ -21,13 +49,38 @@ footer {
   padding-bottom: 1rem;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a.display-link {
+  text-decoration: underline;
+}
+
+a.no-styling {
+  color: #090909;
+  text-decoration: none;
+}
+
 p {
   margin: 0;
 }
 
-p .wellbeing-body {
+p.wellbeing-body {
   font-size: 1em;
-  margin-bottom: 0.1em;
+  margin-bottom: 1em;
   color: #090909;
 }
 
@@ -37,8 +90,21 @@ p .wellbeing-body {
   font-weight: Bold;
 }
 
-.center {
+.centre {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.thin-border {
+  border: #090909;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0.2em;
+  margin: 1em;
+}
+
+.display-inline-block {
+  display: inline-block;
+  /* todo - centre element on screen */
 }
