@@ -1,13 +1,15 @@
 {{>template/head}}
     <form action="/login" method="post">
         <section>
-            <label for="username">Username</label> {{! todo - change to username or password}}
+            <label for="username">Username</label> {{! todo - change to username OR password}}
             <input id="username" name="username" type="text" autocomplete="username" required autofocus>
         </section>
         <section>
             <label for="current-password">Password</label>
             <input id="current-password" name="password" type="password" autocomplete="current-password" required>
         </section>
-        <button type="submit">Log in</button>
+        <section class="centre">
+            <input type="submit" value="Log in" class="centre">
+        </section>
     </form>
 {{>template/foot}}

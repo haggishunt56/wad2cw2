@@ -9,11 +9,11 @@ exports.login = function (req, res, next) {
 
     userModel.lookup(username, function (err, user) {
         if (err) {
-            console.log("error looking up user", err);
+            console.log("error looking up user\n", err);
             return res.status(500).render("500");
         } else if (!user) {
             console.log('Incorrect username or password.');
-            return res.status(401).render("404"); // todo - res.render("register")?
+            return res.status(401).render("404"); // todo - res.render("register") with error message
         } else {
             // compare provided password with stored password
             bcrypt.compare(password, user.password, function (err, result) {
@@ -41,7 +41,7 @@ exports.verify = function (req, res, next) {
     try {
         const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
         next();
-    } catch (e) {
+    } catch(err) {
         //if an error occurred return request unauthorized error
         res.status(401).send(); // todo - render a page
     }

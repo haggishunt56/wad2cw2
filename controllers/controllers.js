@@ -14,10 +14,17 @@ exports.register_page = function(req, res) {
 
 exports.register_new_user = function(req, res) {
     const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
+    const passwordConf = req.body["password-confirm"];
+    const dob = req.body.dob;
 
     if (!username || !password) {
-        res.status(401).send('Please provide a username and password'); // todo - render webpage
+        res.status(401).send('Please provide all required fields'); // todo - render webpage
+        return;
+    }
+    if (password !== passwordConf) {
+        res.status(401).render('register'); // todo - display error and auto-populate with provided details to prevent user having to resupply these
         return;
     }
 
@@ -26,9 +33,8 @@ exports.register_new_user = function(req, res) {
             res.status(400).send("Error: User " + username + " already exists!"); // todo - render webpage
             return;
         }
-        userDao.create(username, password);
-        // console.log("register user", username, "password", password);
-        res.redirect('/login'); //todo - message on screen that the account is created
+        userDao.create(username, email, password, dob);
+        res.redirect('/login'); //todo - display message on screen that the account has been created
     });
 }
 
