@@ -1,10 +1,10 @@
 body {
-    background-color: #e3e3e3;
+    background-color: #eeeeee;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
-    background-color: rgb(171, 171, 171);
+    background-color: #cccccc;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -16,7 +16,7 @@ nav {
 }
 
 footer {
-    background-color: rgb(171, 171, 171);
+    background-color: #cccccc;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -29,4 +29,16 @@ p {
       margin-bottom: 0.1em;
       color: #090909;
     }
+}
+
+#appHeader {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0.1em;
+    font-weight: Bold;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

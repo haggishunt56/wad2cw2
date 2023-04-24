@@ -38,3 +38,10 @@ exports.log_in_page = function(req, res) {
     });
 }
 
+exports.logout = (req, res) => {
+    res.clearCookie("jwt").status(200).redirect("/"); // todo - display message that user is logged out.
+}
+
+exports.about = (req, res) => {
+    res.render("about");
+}

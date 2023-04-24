@@ -40,8 +40,6 @@ exports.verify = function (req, res, next) {
     }
     try {
         const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-        console.log("payload:")
-        console.log(payload)
         next();
     } catch (e) {
         //if an error occurred return request unauthorized error
