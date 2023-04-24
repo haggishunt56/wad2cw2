@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="en-gb">
-    <head>
-        <title>MyWellbeingApp</title>
-        <link rel="stylesheet" href="styles/stylesheet.css" type="text/css">
-    </head>
-    <body>
-        <header>
-            {{>appHeader}}
-        </header>
-        <nav>
-            {{>landingNavBar}}
-            {{! todo - display appNavBar if user is logged in}}
-        </nav>
-        <a href="/" class="no-styling">&lt;back</a>
-        <h1>About us</h1>
-        <main>
-            <div>
-                <p class="wellbeing-body">We are an organisation dedicated to improving your health and wellbeing.
-                Our mission is to see everyone in the world making the best life choices,
-                crushing their goals and achieving their dreams.</p>
-                <p class="wellbeing-body">This website was designed and build by Douglas Pollock.</p>
-            </div>
-        </main>
-        <footer>
-        {{>appFooter}}
-        </footer>
-    </body>
-</html>
+{{>template/head}}
+    <div>
+        <p class="wellbeing-body">We are an organisation dedicated to improving your health and wellbeing.
+        Our mission is to see everyone in the world making the best life choices,
+        crushing their goals and achieving their dreams.</p>
+        <p class="wellbeing-body">This website was designed and build by Douglas Pollock.</p>
+    </div>
+{{>template/foot}}

@@ -1,35 +1,16 @@
-<!DOCTYPE html>
-<html lang="en-gb">
-    <head>
-        <title>MyWellbeingApp</title>
-        <link rel="stylesheet" href="styles/stylesheet.css" type="text/css">
-    </head>
-    <body>
-        <header>
-            {{>appHeader}}
-        </header>
-        <nav>
-            {{>landingNavBar}}
-        </nav>
-        <h1>{{title}}</h1>
-        <main>
-            <a href="/register">
-                <div class="thin-border display-inline-block">
-                    <img src="images/homeimg1.jpg" alt="An image of two women performing warmup excercises" width="300" height="210"/>
-                    <p class="wellbeing-body" id="no-styling">Start your wellbeing journey now</p>
-                    <p class="wellbeing-body display-link">Register here today</p>
-                </div>
-            </a>
-            <a href="/login">
-                <div class="thin-border display-inline-block">
-                    <img src="images/homeimg2.jpeg" alt="An image of a smiling man" width="300" height="210"/>
-                    <p class="wellbeing-body" class="no-styling">Already have an account?</p>
-                    <p class="wellbeing-body display-link">Log in</p>
-                </div>
-            </a>
-        </main>
-        <footer>
-        {{>appFooter}}
-        </footer>
-    </body>
-</html>
+{{>template/head}}
+    <a href="/register">
+        <div class="thin-border display-inline-block">
+            <img src="images/homeimg1.jpg" alt="An image of two women performing warmup excercises" width="300" height="210"/>
+            <p class="wellbeing-body" id="no-styling">Start your wellbeing journey now</p>
+            <p class="wellbeing-body display-link">Register here today</p>
+        </div>
+    </a>
+    <a href="/login">
+        <div class="thin-border display-inline-block">
+            <img src="images/homeimg2.jpeg" alt="An image of a smiling man" width="300" height="210"/>
+            <p class="wellbeing-body" class="no-styling">Already have an account?</p>
+            <p class="wellbeing-body display-link">Log in</p>
+        </div>
+    </a>
+{{>template/foot}}
