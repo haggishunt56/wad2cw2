@@ -4,7 +4,7 @@ const controller = require("../controllers/controllers.js");
 const {login} = require('../auth/auth')
 const {verify} = require('../auth/auth')
 
-// home/unprotected pages
+// unprotected pages
 router.get("/", controller.landing_page);
 router.get("/about", controller.about);
 
@@ -12,20 +12,11 @@ router.get("/about", controller.about);
 router.get("/register", controller.register_page);
 router.post("/register", controller.register_new_user)
 router.get("/login", controller.log_in_page);
-router.post("/login", login, (req, res) => {
-    if (req.cookies) {
-        res.send("logged in!"); // todo - direct to correct page
-    } else {
-        res.render("login"); // authentication failed
-        //todo - display error on login page
-    }
-});
+router.post("/login", login, controller.log_in_user);
 router.get("/logout", verify, controller.logout);
 
-// for test purposes - to be deleted
-router.get("/logintest", verify, (req, res) => {
-    res.send("logged in!");
-});
+// protected pages
+router.get("/home", verify, controller.home);
 
 // 404 handler
 router.use((req, res) => { 

@@ -94,7 +94,7 @@ p {
     border: 1px solid #09090910;
     border-radius: 6px;
     padding: 0.5em;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px inset;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 4px 12px inset;
 }
 
 input{
@@ -121,6 +121,27 @@ input{
             box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
             background-color: #82b3ff;
         }
+    }
+}
+
+.navbuttons {
+    flex-wrap: wrap;
+    gap: 10px 20px;
+}
+
+.navbutton {
+    flex: 1 1 0;
+    width: 0;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: rgba(50, 50, 93, 0.45) 0px 5px 10px -1px inset;
+        background-color: #82b3ff;
     }
 }
 

@@ -6,13 +6,19 @@ exports.landing_page = function(req, res) {
     });
 }
 
-exports.register_page = function(req, res) {
+exports.about = (req, res) => {
+    res.render("about", {
+        "title": "About us"
+    });
+}
+
+exports.register_page = (req, res) => {
     res.render('register', {
         'title': 'Register account'
     });
 }
 
-exports.register_new_user = function(req, res) {
+exports.register_new_user = (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
@@ -24,7 +30,9 @@ exports.register_new_user = function(req, res) {
         return;
     }
     if (password !== passwordConf) {
-        res.status(401).render('register'); // todo - display error and auto-populate with provided details to prevent user having to resupply these
+        res.status(401).render('register', {
+            'title': 'Register account'
+        }); // todo - display error and auto-populate with provided details to prevent user having to resupply these
         return;
     }
 
@@ -34,22 +42,33 @@ exports.register_new_user = function(req, res) {
             return;
         }
         userDao.create(username, email, password, dob);
-        res.redirect('/login'); //todo - display message on screen that the account has been created
+        res.redirect('/login', {
+            'title': 'Log in'
+        }); //todo - display message on screen that the account has been created
     });
 }
 
-exports.log_in_page = function(req, res) {
+exports.log_in_page = (req, res) => {
     res.render('login', {
         'title': 'Log in'
     });
+}
+
+exports.log_in_user = (req, res) => {
+    if (req.cookies) {
+        res.send("logged in!"); // todo - direct to correct page
+    } else {
+        res.render("login"); // authentication failed
+        //todo - display error on login page
+    }
 }
 
 exports.logout = (req, res) => {
     res.clearCookie("jwt").status(200).redirect("/"); // todo - display message that user is logged out.
 }
 
-exports.about = (req, res) => {
-    res.render("about", {
-        "title": "About us"
+exports.home = (req, res) => {
+    res.render('home', {
+        'title': 'Home'
     });
 }
