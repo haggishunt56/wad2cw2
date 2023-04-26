@@ -1,5 +1,10 @@
+$mwb-primary: #f9f9f9;
+$mwb-secondary: #dcdcdc;
+$mwb-tertiary: #29C2A3;
+$mwb-text: #090909;
+
 body {
-    background-color: #eeeeee;
+    background-color: $mwb-primary;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     -webkit-font-smoothing: antialiased;
 
@@ -7,22 +12,16 @@ body {
 
 header {
     position: relative;
-    background-color: #cccccc;
+    background-color: $mwb-secondary;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
 nav {
-    background-color: #29C2A3;
+    background-color: $mwb-tertiary;
     width: 90%;
     height: 5em;
     padding: 0 5%;
-
-    &.flex-container {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: center;
-    }
     
     span.flex-item {
         display: inline;
@@ -31,7 +30,7 @@ nav {
         margin: 0 0.2em;
 
         &:hover {
-            border-bottom: 0.5em solid #eeeeee; /* todo - animate? */
+            border-bottom: 0.5em solid $mwb-primary; /* todo - animate? */
             padding-bottom: 1.5em;
         }
     }
@@ -44,7 +43,7 @@ nav {
 }
 
 footer {
-    background-color: #cccccc;
+    background-color: $mwb-secondary;
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -66,7 +65,7 @@ p {
     &.wellbeing-body {
         font-size: 1em;
         margin-bottom: 1em;
-        color: #090909;
+        color: $mwb-text;
     }
 }
 
@@ -76,14 +75,10 @@ p {
     font-weight: Bold;
 }
 
-.centre {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .thin-border {
-    border: 1px solid #090909;
+    border: 1px solid $mwb-text;
     padding: 0.2em;
     margin:1em;
 }
@@ -147,4 +142,18 @@ input{
 
 .display-inline-block {
     display: inline-block; /* todo - centre element on screen */
+}
+
+div {
+    &.flex-container {
+        display: flex;
+        * {
+            margin: 0.1em 1em;
+        }
+    }
+    &.centre {
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
 }
