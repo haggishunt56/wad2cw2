@@ -21,6 +21,7 @@ nav {
 nav a {
   color: #090909;
   height: 1.5em;
+  /* todo - reduce padding when screen shrinks below 630px */
   padding: 1.5em 1em;
   /* tob&bottom left&right */
   border: 0;

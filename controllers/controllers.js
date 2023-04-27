@@ -89,3 +89,11 @@ exports.home = (req, res) => {
         'user': decoded_token.username
     });
 }
+
+exports.viewgoals = (req, res) => {
+    res.render("goals/viewGoals");
+}
+
+exports.addgoal = (req, res) => {
+    res.render("goals/addGoal");
+}
