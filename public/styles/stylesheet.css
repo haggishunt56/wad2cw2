@@ -14,33 +14,40 @@ header {
 nav {
   background-color: #29C2A3;
   width: 90%;
-  height: 5em;
+  height: 4.5em;
   padding: 0 5%;
+}
+
+nav a {
+  color: #090909;
+  height: 1.5em;
+  padding: 1.5em 1em;
+  /* tob&bottom left&right */
+  border: 0;
+  text-decoration: none;
+  margin: 0 0.5em;
+}
+
+nav a:hover {
+  border-bottom: 0.5em solid #f9f9f9;
+  /* todo - animate? */
+  padding-bottom: 1em;
 }
 
 nav span.flex-item {
   display: inline;
   height: 1em;
-  padding: 2em 0;
-  margin: 0 0.2em;
-}
-
-nav span.flex-item:hover {
-  border-bottom: 0.5em solid #f9f9f9;
-  /* todo - animate? */
-  padding-bottom: 1.5em;
-}
-
-nav a {
-  color: #090909;
-  padding: 2em 0.5em;
-  text-decoration: none;
+  padding: 1.5em 0;
 }
 
 footer {
   background-color: #dcdcdc;
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+footer * {
+  margin: 0.1em 1em;
 }
 
 a:link {
@@ -126,14 +133,9 @@ input[type=submit]:hover {
   background-color: #82b3ff;
 }
 
-.navbuttons {
-  flex-wrap: wrap;
-  gap: 10px 20px;
-}
-
 .navbutton {
   flex: 1 1 0;
-  width: 0;
+  width: 15em;
   background-color: cornflowerblue;
   color: white;
   font-weight: bold;
@@ -148,21 +150,22 @@ input[type=submit]:hover {
   background-color: #82b3ff;
 }
 
+.flex-item {
+  margin: 1em;
+}
+
 .display-inline-block {
   display: inline-block;
   /* todo - centre element on screen */
 }
 
-div.flex-container {
+div.flex-container, section.flex-container {
   display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
 }
 
-div.flex-container * {
-  margin: 0.1em 1em;
-}
-
-div.centre {
+div.centre, section.centre {
   justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
 }

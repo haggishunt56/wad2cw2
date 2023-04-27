@@ -20,32 +20,39 @@ header {
 nav {
     background-color: $mwb-tertiary;
     width: 90%;
-    height: 5em;
+    height: 4.5em;
     padding: 0 5%;
     
-    span.flex-item {
-        display: inline;
-        height: 1em;
-        padding: 2em 0;
-        margin: 0 0.2em;
+    a {
+        color: #090909;
+        height: 1.5em; /* todo - reduce padding when screen shrinks */
+        padding: 1.5em 1em; /* tob&bottom left&right */
+        border: 0;
+        text-decoration: none;
+        margin: 0 0.5em;
 
         &:hover {
             border-bottom: 0.5em solid $mwb-primary; /* todo - animate? */
-            padding-bottom: 1.5em;
+            padding-bottom: 1em;
         }
     }
 
-    a {
-        color: #090909;
-        padding: 2em 0.5em;
-        text-decoration: none;
+    span.flex-item {
+        display: inline;
+        height: 1em;
+        padding: 1.5em 0;        
     }
+
+    
 }
 
 footer {
     background-color: $mwb-secondary;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    * {
+        margin: 0.1em 1em;
+    }
 }
 
 a {
@@ -119,14 +126,9 @@ input{
     }
 }
 
-.navbuttons {
-    flex-wrap: wrap;
-    gap: 10px 20px;
-}
-
 .navbutton {
     flex: 1 1 0;
-    width: 0;
+    width: 15em;
     background-color: cornflowerblue;
     color: white;
     font-weight: bold;
@@ -140,20 +142,22 @@ input{
     }
 }
 
+.flex-item {
+    margin: 1em;
+}
+
 .display-inline-block {
     display: inline-block; /* todo - centre element on screen */
 }
 
-div {
+div, section {
     &.flex-container {
         display: flex;
-        * {
-            margin: 0.1em 1em;
-        }
+        align-items: stretch;
+        flex-wrap: wrap;
     }
     &.centre {
         justify-content: center;
         align-items: center;
-        flex-wrap: nowrap;
     }
 }

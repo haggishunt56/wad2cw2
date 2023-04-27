@@ -1,4 +1,5 @@
 const userDao = require('../models/user.js');
+const jwt_decode = require("jwt-decode");
 
 exports.landing_page = function(req, res) {
     res.render('landing', {
@@ -55,8 +56,11 @@ exports.log_in_page = (req, res) => {
 }
 
 exports.log_in_user = (req, res) => {
+    console.log(req.body);
     if (req.cookies) {
-        res.send("logged in!"); // todo - direct to correct page
+        res.render("home", {
+            user: req.body.username
+        });
     } else {
         res.render("login"); // authentication failed
         //todo - display error on login page
@@ -68,7 +72,20 @@ exports.logout = (req, res) => {
 }
 
 exports.home = (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    ); // jwt_decode is unable to decode the last section of the token. It is removed by the slice() method to allow the remainder to be decoded.
     res.render('home', {
-        'title': 'Home'
+        'user': decoded_token.username
     });
 }
