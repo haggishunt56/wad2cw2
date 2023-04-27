@@ -82,8 +82,6 @@ p {
     font-weight: Bold;
 }
 
-
-
 .thin-border {
     border: 1px solid $mwb-text;
     padding: 0.2em;
@@ -97,16 +95,15 @@ p {
     // box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 12px inset;
 }
 
-input{
-    &[type=text], &[type=password] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        border: 1px solid #ccc;
-        border-radius: 7px;
-        box-sizing: border-box;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
-    }
+input, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     &[type=submit] {
         width: 30%;
         background-color: cornflowerblue;
@@ -148,7 +145,8 @@ input{
     display: inline-block; /* todo - centre element on screen */
 }
 
-div, section {
+div, section, fieldset {
+    border: none;
     &.flex-container {
         display: flex;
         align-items: stretch;

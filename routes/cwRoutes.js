@@ -18,7 +18,8 @@ router.get("/logout", verify, controller.logout);
 // protected pages
 router.get("/home", verify, controller.home);
 router.get("/goals", verify, controller.viewgoals);
-router.get("/goals/add", verify, controller.addgoal);
+router.get("/goals/add", verify, controller.addgoalpage);
+router.post("/goals/add", verify, controller.addgoal)
 
 // 404 handler
 router.use((req, res) => { 

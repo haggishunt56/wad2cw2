@@ -1,5 +1,25 @@
 {{>template/head}}
 
-<p>test</p>
+<form action="/goals/add" method="post">
+    <fieldset class="form-section">
+        <label>Goal name</label>
+        <input id="goalname" name="goalname" type="text" maxlength="128" required autofocus>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Target completion date</label>
+        <input id="targetdate" name="targetdate" type="text" maxlength="10" required>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Category</label>
+        <input id="category" name="category" type="text" maxlength="128" required>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Goal description</label>
+        <textarea id="description" name="description" maxlength="2000" rows="5" required></textarea>
+    </fieldset>
+    <fieldset class="form-section">
+        <input type="submit" value="Create goal">
+    </fieldset>
+</form>
 
 {{>template/foot}}

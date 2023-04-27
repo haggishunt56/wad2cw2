@@ -1,5 +1,8 @@
 const userDao = require('../models/user.js');
+const goalDao = require('../models/goal');
 const jwt_decode = require("jwt-decode");
+
+const db = new goalDao();
 
 exports.landing_page = function(req, res) {
     res.render('landing', {
@@ -24,7 +27,6 @@ exports.register_new_user = (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const passwordConf = req.body["password-confirm"];
-    const dob = req.body.dob;
 
     if (!username || !password) {
         res.status(401).send('Please provide all required fields'); // todo - render webpage
@@ -42,7 +44,7 @@ exports.register_new_user = (req, res) => {
             res.status(400).send("Error: User " + username + " already exists!"); // todo - render webpage
             return;
         }
-        userDao.create(username, email, password, dob);
+        userDao.create(username, email, password);
         res.redirect('/login', {
             'title': 'Log in'
         }); //todo - display message on screen that the account has been created
@@ -91,9 +93,35 @@ exports.home = (req, res) => {
 }
 
 exports.viewgoals = (req, res) => {
-    res.render("goals/viewGoals");
+    db.getAllEntries()
+        .then((entries) => {
+            console.log(entries);
+            res.render("goals/viewGoals", {
+                title: "Goals",
+                goals: entries,
+            });
+        })
+        .catch((err) => {
+            console.log("promise rejected", err);
+        });
+}
+
+exports.addgoalpage = (req, res) => {
+    res.render("goals/addGoal", {
+        'title': 'Add a goal'
+    });
 }
 
 exports.addgoal = (req, res) => {
-    res.render("goals/addGoal");
+    const goalname = req.body.goalname;
+    const targetdate = req.body.targetdate;
+    const category = req.body.category;
+    const description = req.body.description;
+
+    // todo - field validation
+
+    db.create(goalname, targetdate, category, description);
+    res.redirect('/goals', {
+        'title': 'Goals'
+    }); //todo - display message on screen that the goal has been created
 }

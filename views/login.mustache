@@ -1,15 +1,15 @@
 {{>template/head}}
     <form action="/login" method="post">
-        <section class="form-section">
+        <fieldset class="form-section">
             <label for="username">Username</label> {{! todo - change to username OR password}}
             <input id="username" name="username" type="text" autocomplete="username" required autofocus>
-        </section>
-        <section class="form-section">
+        </fieldset>
+        <fieldset class="form-section">
             <label for="current-password">Password</label>
             <input id="current-password" name="password" type="password" autocomplete="current-password" required>
-        </section>
-        <section class="form-section">
+        </fieldset>
+        <fieldset class="form-section">
             <input type="submit" value="Log in" class="centre">
-        </section>
+        </fieldset>
     </form>
 {{>template/foot}}

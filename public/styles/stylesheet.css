@@ -104,7 +104,7 @@ p.wellbeing-body {
   padding: 0.5em;
 }
 
-input[type=text], input[type=password] {
+input, textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -112,9 +112,10 @@ input[type=text], input[type=password] {
   border-radius: 7px;
   box-sizing: border-box;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-input[type=submit] {
+input[type=submit], textarea[type=submit] {
   width: 30%;
   background-color: cornflowerblue;
   color: white;
@@ -126,7 +127,7 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, textarea[type=submit]:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
   background-color: #82b3ff;
 }
@@ -157,13 +158,17 @@ input[type=submit]:hover {
   /* todo - centre element on screen */
 }
 
-div.flex-container, section.flex-container {
+div, section, fieldset {
+  border: none;
+}
+
+div.flex-container, section.flex-container, fieldset.flex-container {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
 }
 
-div.centre, section.centre {
+div.centre, section.centre, fieldset.centre {
   justify-content: center;
   align-items: center;
 }
