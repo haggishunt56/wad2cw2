@@ -104,6 +104,9 @@ input, textarea {
     box-sizing: border-box;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    &.readonly {
+        background-color: $mwb-secondary;
+    }
     &[type=submit] {
         width: 30%;
         background-color: cornflowerblue;

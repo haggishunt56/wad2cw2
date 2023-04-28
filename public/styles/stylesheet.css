@@ -115,6 +115,10 @@ input, textarea {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+input.readonly, textarea.readonly {
+  background-color: #dcdcdc;
+}
+
 input[type=submit], textarea[type=submit] {
   width: 30%;
   background-color: cornflowerblue;

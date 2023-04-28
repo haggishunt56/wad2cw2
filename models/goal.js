@@ -1,13 +1,8 @@
 const nedb = require("nedb");
+const db = new nedb({filename:'../goal.db', autoload:true});
 
 class GoalDAO {
-    constructor() {
-        try {
-            this.db = new nedb({filename:'../goal.db', autoload:true});
-        } catch(err) {
-            console.log(err)
-        }
-    }
+    constructor() {}
     create(username, goalname, targetdate, category, description) {
         var goal = {
             user: username,
@@ -16,9 +11,10 @@ class GoalDAO {
             category: category,
             description: description,
             dateadded: new Date(Date.now()),
+            dateCompleted: '',
             completed: false,
         }
-        this.db.insert(goal, (err) => {
+        db.insert(goal, (err) => {
             if (err) {
                 console.log("Can't insert goal: ", goal.name);
                 console.log(err);
@@ -27,7 +23,7 @@ class GoalDAO {
     }
     getEntry(id) { //return details of one goal
         return new Promise((resolve, reject) => {
-            this.db.find({_id: id}, function(err, doc) {
+            db.find({_id: id}, function(err, doc) {
                 // if error occurs, print to console and reject Promise
                 if (err) {
                     console.log(err);
@@ -41,7 +37,7 @@ class GoalDAO {
     }
     getAllEntries() { // return every goal in the database
         return new Promise((resolve, reject) => {
-            this.db.find({}, function(err, entries) {
+            db.find({}, function(err, entries) {
                 // if error occurs, print to console and reject Promise
                 if (err) {
                     console.log(err);
@@ -55,7 +51,7 @@ class GoalDAO {
     }
     getEntriesByUser(username) { // return every goal for one user
         return new Promise((resolve, reject) => {
-            this.db.find({user: username}, function(err, entries) {
+            db.find({user: username}, function(err, entries) {
                 // if error occurs, print to console and reject promise
                 if (err) {
                     console.log(err);
@@ -66,6 +62,21 @@ class GoalDAO {
                 }
             })
         })
+    }
+    edit(id, goalname, targetdate, category, description, completiondate, completed) {
+        db.update({ _id: id }, { $set: {
+            name: goalname,
+            target: targetdate,
+            category: category,
+            description: description,
+            dateCompleted: completiondate,
+            completed: completed
+        } }, { multi: true }, function (err, numReplaced) {
+            if (err) {
+                console.log("Can't insert goal: ", goalname);
+                reject(err);
+            }
+        });
     }
     removeAll() {
         return new Promise((resolve, reject) => {

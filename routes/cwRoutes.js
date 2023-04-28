@@ -22,6 +22,9 @@ router.get("/home", verify, controller.home);
 router.get("/goals", verify, controller.viewgoals);
 router.get("/goals/add", verify, controller.addgoalpage);
 router.post("/goals/add", verify, controller.addgoal);
+// get all goals - for debugging
+router.get("/goals/all", verify, controller.getAllGoals)
+
 router.get("/goals/:id", verify, controller.goaldetails);
 router.post("/goals/:id", verify, controller.editgoal);
 
@@ -35,6 +38,8 @@ router.get("/guides/nutrition", verify, controller.nutritionguide);
 
 // clear database - for debugging
 router.get("/purge", verify, controller.purgeGoals);
+
+
 
 // 404 handler
 router.use((req, res) => { 

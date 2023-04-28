@@ -166,11 +166,9 @@ exports.addgoal = (req, res) => {
 
 exports.goaldetails = (req, res) => {
     const id = req.params.id;
-    
     // get goal details
     db.getEntry(id)
         .then((entry) => {
-            console.log(entry[0]);
             res.render("goals/editGoal", {
                 "title": "Edit goal",
                 "goal": entry[0]
@@ -179,8 +177,17 @@ exports.goaldetails = (req, res) => {
 }
 
 exports.editgoal = (req, res) => {
-    console.log(req.body);
-    res.send("under construction");
+    const id = req.params.id;
+    const goalname = req.body.goalname;
+    const targetdate = req.body.targetdate;
+    const category = req.body.category;
+    const description = req.body.description;
+    const completiondate = req.body.completiondate;
+    const completed = req.body.goalcomplete ? true : false;
+    // todo - field validation
+
+    db.edit(id, goalname, targetdate, category, description, completiondate, completed)
+    res.status(200).redirect('/goals');
 }
 
 exports.guides = (req, res) => {
@@ -207,6 +214,7 @@ exports.lifestyleguide = (req, res) => {
     });
 }
 
+// debugging - to be deleted
 exports.purgeGoals = (req, res) => {
     const db = new goalDao();
     function sleep(ms) {
@@ -214,4 +222,32 @@ exports.purgeGoals = (req, res) => {
     }
     db.removeAll();
     res.render('home');
+}
+
+exports.getAllGoals = (req, res) => {
+    db.getAllEntries()
+        .then((entries) => {
+            let i = 0;
+            for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
+                // entry.dateadded = entry.dateadded.toLocaleDateString('en-GB'); // doesn't work - refuses to format as en-GB and always defaults fo en-US.
+                // pad function obtained from StackOverflow as a workaround for toLocaleDateString() not working
+                //source: https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format
+                function pad(n) {return n < 10 ? "0"+n : n;}
+                entry.dateadded = pad(entry.dateadded.getDate())+"/"+pad(entry.dateadded.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                if (entry.datecompleted) {
+                    entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                }
+                entries[i] = entry;
+                i++;
+            }
+            const goalsExist = entries.length>0 ? true : false;
+            res.render("goals/viewGoals", {
+                title: "Goals",
+                goalsExist: goalsExist,
+                goals: entries,
+            });
+        })
+        .catch((err) => {
+            console.log("promise rejected", err);
+        });
 }

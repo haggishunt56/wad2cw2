@@ -6,8 +6,8 @@
         <input id="goalname" name="goalname" type="text" maxlength="128" value="{{goal.name}}" required autofocus>
     </fieldset>
     <fieldset class="form-section">
-        <label>Date added</label>
-        <input id="dateadded" name="dateadded" type="text" maxlength="128" value="{{goal.dateadded}}" required>
+        <label>Date added</label> <!-- todo - format date -->
+        <input class="readonly" id="dateadded" name="dateadded" type="text" maxlength="128" value="{{goal.dateadded}}" readonly>
     </fieldset>
     <fieldset class="form-section">
         <label>Target completion date</label>
@@ -23,11 +23,12 @@
     </fieldset>
     <fieldset class="form-section">
         <label>Actual completion date</label>
-        <input id="completiondate" name="completiondate" type="text" maxlength="10" value="{{goal.datecomplete}}">
+        <input id="completiondate" name="completiondate" type="text" maxlength="10" value="{{goal.dateCompleted}}">
     </fieldset>
     <fieldset class="form-section">
         <label>Goal complete</label>
-        <input type="checkbox" id="goalcomplete" name="goalcomplete" value="complete">
+        {{#goal.completed}}<input type="checkbox" id="goalcomplete" name="goalcomplete" value="complete" checked>{{/goal.completed}}
+        {{^goal.completed}}<input type="checkbox" id="goalcomplete" name="goalcomplete" value="complete">{{/goal.completed}}
     </fieldset>
     <fieldset class="form-section flex-container centre">
         <input type="submit" value="Save">
