@@ -1,0 +1,37 @@
+{{>template/head}}
+
+<form action="/goals/{{goal._id}}" method="post">
+    <fieldset class="form-section">
+        <label>Goal name</label>
+        <input id="goalname" name="goalname" type="text" maxlength="128" value="{{goal.name}}" required autofocus>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Date added</label>
+        <input id="dateadded" name="dateadded" type="text" maxlength="128" value="{{goal.dateadded}}" required>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Target completion date</label>
+        <input id="targetdate" name="targetdate" type="text" maxlength="10" value="{{goal.target}}" required>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Category</label>
+        <input id="category" name="category" type="text" maxlength="128" value="{{goal.category}}" required>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Goal description</label>
+        <textarea id="description" name="description" maxlength="2000" rows="5" required>{{goal.description}}</textarea>
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Actual completion date</label>
+        <input id="completiondate" name="completiondate" type="text" maxlength="10" value="{{goal.datecomplete}}">
+    </fieldset>
+    <fieldset class="form-section">
+        <label>Goal complete</label>
+        <input type="checkbox" id="goalcomplete" name="goalcomplete" value="complete">
+    </fieldset>
+    <fieldset class="form-section flex-container centre">
+        <input type="submit" value="Save">
+    </fieldset>
+</form>
+
+{{>template/foot}}

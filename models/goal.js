@@ -25,6 +25,20 @@ class GoalDAO {
             }
         });
     }
+    getEntry(id) { //return details of one goal
+        return new Promise((resolve, reject) => {
+            this.db.find({_id: id}, function(err, doc) {
+                // if error occurs, print to console and reject Promise
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                // if no error, return the data
+                } else {
+                    resolve(doc);
+                }
+            })
+        })
+    }
     getAllEntries() { // return every goal in the database
         return new Promise((resolve, reject) => {
             this.db.find({}, function(err, entries) {

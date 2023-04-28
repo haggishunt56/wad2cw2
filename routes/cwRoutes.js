@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/controllers.js");
-const {login} = require('../auth/auth')
-const {verify} = require('../auth/auth')
+const {login} = require('../auth/auth');
+const {verify} = require('../auth/auth');
 
 // unprotected pages
 router.get("/", controller.landing_page);
@@ -21,7 +21,9 @@ router.get("/home", verify, controller.home);
 // goals
 router.get("/goals", verify, controller.viewgoals);
 router.get("/goals/add", verify, controller.addgoalpage);
-router.post("/goals/add", verify, controller.addgoal)
+router.post("/goals/add", verify, controller.addgoal);
+router.get("/goals/:id", verify, controller.goaldetails);
+router.post("/goals/:id", verify, controller.editgoal);
 
 // guides
 router.get("/guides", verify, controller.guides)

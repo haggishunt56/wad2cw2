@@ -164,6 +164,25 @@ exports.addgoal = (req, res) => {
     res.redirect(200, '/goals'); //todo - display message on screen that the goal has been created
 }
 
+exports.goaldetails = (req, res) => {
+    const id = req.params.id;
+    
+    // get goal details
+    db.getEntry(id)
+        .then((entry) => {
+            console.log(entry[0]);
+            res.render("goals/editGoal", {
+                "title": "Edit goal",
+                "goal": entry[0]
+            });
+    });
+}
+
+exports.editgoal = (req, res) => {
+    console.log(req.body);
+    res.send("under construction");
+}
+
 exports.guides = (req, res) => {
     res.render('guides/guides', {
         'title': 'Guides'
