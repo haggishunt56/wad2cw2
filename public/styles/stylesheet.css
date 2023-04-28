@@ -168,6 +168,10 @@ div.flex-container, section.flex-container, fieldset.flex-container, article.fle
   flex-wrap: wrap;
 }
 
+div.flex-down, section.flex-down, fieldset.flex-down, article.flex-down {
+  flex-direction: column;
+}
+
 div.centre, section.centre, fieldset.centre, article.centre {
   justify-content: center;
   align-items: center;
@@ -175,6 +179,8 @@ div.centre, section.centre, fieldset.centre, article.centre {
 
 div.justify, section.justify, fieldset.justify, article.justify {
   justify-content: space-evenly;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 table {

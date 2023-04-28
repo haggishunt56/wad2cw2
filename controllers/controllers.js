@@ -164,6 +164,12 @@ exports.addgoal = (req, res) => {
     res.redirect(200, '/goals'); //todo - display message on screen that the goal has been created
 }
 
+exports.guides = (req, res) => {
+    res.render('guides/guides', {
+        'title': 'Guides'
+    })
+}
+
 exports.fitnessguide = (req, res) => {
     res.render('guides/fitness', {
         'title': 'Fitness guide'

@@ -152,12 +152,17 @@ div, section, fieldset, article {
         align-items: stretch;
         flex-wrap: wrap;
     }
+    &.flex-down {
+        flex-direction: column;
+    }
     &.centre {
         justify-content: center;
         align-items: center;
     }
     &.justify {
         justify-content: space-evenly;
+        text-align: justify;
+        text-justify: inter-word;
     }
 }
 

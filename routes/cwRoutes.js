@@ -24,9 +24,10 @@ router.get("/goals/add", verify, controller.addgoalpage);
 router.post("/goals/add", verify, controller.addgoal)
 
 // guides
-router.get("/fitness", verify, controller.fitnessguide);
-router.get("/lifestyle", verify, controller.lifestyleguide);
-router.get("/nutrition", verify, controller.nutritionguide);
+router.get("/guides", verify, controller.guides)
+router.get("/guides/fitness", verify, controller.fitnessguide);
+router.get("/guides/lifestyle", verify, controller.lifestyleguide);
+router.get("/guides/nutrition", verify, controller.nutritionguide);
 
 //trophies - todo
 
