@@ -4,25 +4,31 @@
 
 {{#goalsExist}}
 <table class="goals">
-  <tr>
-    <th>Goal</th>
-    <th>Date added</th>
-    <th>Date completed</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Date added</th>
+      <th>Date completed</th>
+    </tr>
+  </thead>
+  <tbody>
 {{/goalsExist}}
 
-{{#goals}} <!-- for goal in goals -->
-  <tr>
-    <td>{{name}}</td>
-    <td>{{dateadded}}</td>
-    <td>{{#dateCompleted}}{{.}}{{/dateCompleted}}{{^dateCompleted}}-{{/dateCompleted}}</td>
-    <!--<td>{{target}}</td>
-    <td>{{category}}</td>
-    <td>{{description}}</td>
-    <td>{{completed}}</td> }}-->
-  </tr>
+{{#goals}}
+    <tr>
+      <td><a href="/goals/{{_id}}" class="no-styling">{{name}}</a></td>
+      <td>{{dateadded}}</td>
+      <td>{{#dateCompleted}}{{.}}{{/dateCompleted}}{{^dateCompleted}}-{{/dateCompleted}}</td>
+      <!--<td>{{target}}</td>
+      <td>{{category}}</td>
+      <td>{{description}}</td>
+      <td>{{completed}}</td> }}-->
+      
+    </tr>
+  
 {{/goals}}
 {{#goalsExist}}
+</tbody>
 </table>
 {{/goalsExist}}
 

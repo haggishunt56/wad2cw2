@@ -20,27 +20,27 @@ header {
 nav {
     background-color: $mwb-tertiary;
     width: 90%;
-    height: 4.5em;
+    height: 4.5rem;
     padding: 0 5%;
     
     a {
         color: #090909;
-        height: 1.5em; /* todo - reduce padding when screen shrinks below 630px */
-        padding: 1.5em 1em; /* tob&bottom left&right */
+        height: 1.5rem; /* todo - reduce padding when screen shrinks below 630px */
+        padding: 1.5rem 1rem; /* tob&bottom left&right */
         border: 0;
         text-decoration: none;
-        margin: 0 0.5em;
+        margin: 0 0.5rem;
 
         &:hover {
-            border-bottom: 0.5em solid $mwb-primary; /* todo - animate? */
-            padding-bottom: 1em;
+            border-bottom: 0.5rem solid $mwb-primary; /* todo - animate? */
+            padding-bottom: 1rem;
         }
     }
 
     span.flex-item {
         display: inline;
-        height: 1em;
-        padding: 1.5em 0;        
+        height: 1rem;
+        padding: 1.5rem 0;        
     }
 
     
@@ -51,7 +51,7 @@ footer {
     padding-top: 1rem;
     padding-bottom: 1rem;
     * {
-        margin: 0.1em 1em;
+        margin: 0.1rem 1rem;
     }
 }
 
@@ -70,28 +70,28 @@ a {
 p {
     margin: 0;
     &.wellbeing-body {
-        font-size: 1em;
-        margin-bottom: 1em;
+        font-size: 1rem;
+        margin-bottom: 1rem;
         color: $mwb-text;
     }
 }
 
 #appHeader {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0.1em;
+    margin: 0.1rem;
     font-weight: Bold;
 }
 
 .thin-border {
     border: 1px solid $mwb-text;
-    padding: 0.2em;
-    margin:1em;
+    padding: 0.2rem;
+    margin:1rem;
 }
 
 .form-section {
-    margin: 1em 5em;
+    margin: 1rem 5rem;
     display: block;
-    padding: 0.5em;
+    padding: 0.5rem;
     // box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 12px inset;
 }
 
@@ -123,7 +123,7 @@ input, textarea {
 
 .navbutton {
     flex: 1 1 0;
-    width: 15em;
+    width: 15rem;
     background-color: cornflowerblue;
     color: white;
     font-weight: bold;
@@ -159,7 +159,26 @@ div, section, fieldset {
 }
 
 table {
-    &.goals {
-        
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    tr {
+        border-bottom: 1px solid $mwb-text;
+        position: relative;
+        &:nth-child(even) {
+            background-color: $mwb-secondary;
+        }
+    }
+    td, th {
+        padding: 1rem;
+        text-align: center;
+    }
+    a:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
     }
 }
