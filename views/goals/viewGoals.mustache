@@ -1,14 +1,30 @@
 {{>template/head}}
 
-{{#goals}}
+{{^goals}}No goals added :({{/goals}}
 
-{{name}}
-{{target}}
-{{category}}
-{{description}}
-{{completed}}
-<hr>
+{{#goalsExist}}
+<table class="goals">
+  <tr>
+    <th>Goal</th>
+    <th>Date added</th>
+    <th>Date completed</th>
+  </tr>
+{{/goalsExist}}
 
+{{#goals}} <!-- for goal in goals -->
+  <tr>
+    <td>{{name}}</td>
+    <td>{{dateadded}}</td>
+    <td>{{#dateCompleted}}{{.}}{{/dateCompleted}}{{^dateCompleted}}-{{/dateCompleted}}</td>
+    <!--<td>{{target}}</td>
+    <td>{{category}}</td>
+    <td>{{description}}</td>
+    <td>{{completed}}</td> }}-->
+  </tr>
 {{/goals}}
+{{#goalsExist}}
+</table>
+{{/goalsExist}}
+
 
 {{>template/foot}}

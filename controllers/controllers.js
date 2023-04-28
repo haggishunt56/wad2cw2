@@ -45,9 +45,7 @@ exports.register_new_user = (req, res) => {
             return;
         }
         userDao.create(username, email, password);
-        res.redirect('/login', {
-            'title': 'Log in'
-        }); //todo - display message on screen that the account has been created
+        res.redirect(200, '/login'); //todo - display message on screen that the account has been created
     });
 }
 
@@ -58,7 +56,6 @@ exports.log_in_page = (req, res) => {
 }
 
 exports.log_in_user = (req, res) => {
-    console.log(req.body);
     if (req.cookies) {
         res.render("home", {
             user: req.body.username
@@ -93,11 +90,41 @@ exports.home = (req, res) => {
 }
 
 exports.viewgoals = (req, res) => {
-    db.getAllEntries()
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    );
+    const user = decoded_token.username;
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    db.getEntriesByUser(user)
         .then((entries) => {
-            console.log(entries);
+            let i = 0;
+            for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
+                // entry.dateadded = entry.dateadded.toLocaleDateString('en-GB'); // doesn't work - refuses to format as en-GB and always defaults fo en-US.
+                // pad function obtained from StackOverflow as a workaround for toLocaleDateString() not working
+                //source: https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format
+                function pad(n) {return n < 10 ? "0"+n : n;}
+                entry.dateadded = pad(entry.dateadded.getDate())+"/"+pad(entry.dateadded.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                if (entry.datecompleted) {
+                    entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                }
+                entries[i] = entry;
+                i++;
+            }
+            const goalsExist = entries.length>0 ? true : false;
             res.render("goals/viewGoals", {
                 title: "Goals",
+                goalsExist: goalsExist,
                 goals: entries,
             });
         })
@@ -113,15 +140,35 @@ exports.addgoalpage = (req, res) => {
 }
 
 exports.addgoal = (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    );
+    const user = decoded_token.username;
     const goalname = req.body.goalname;
     const targetdate = req.body.targetdate;
     const category = req.body.category;
     const description = req.body.description;
-
     // todo - field validation
 
-    db.create(goalname, targetdate, category, description);
-    res.redirect('/goals', {
-        'title': 'Goals'
-    }); //todo - display message on screen that the goal has been created
+    db.create(user, goalname, targetdate, category, description);
+    res.redirect(200, '/goals'); //todo - display message on screen that the goal has been created
+}
+
+exports.purgeGoals = (req, res) => {
+    const db = new goalDao();
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    db.removeAll();
+    res.render('home');
 }

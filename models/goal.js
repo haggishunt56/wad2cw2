@@ -8,12 +8,14 @@ class GoalDAO {
             console.log(err)
         }
     }
-    create(goalname, targetdate, category, description) {
+    create(username, goalname, targetdate, category, description) {
         var goal = {
+            user: username,
             name: goalname,
             target: targetdate,
             category: category,
             description: description,
+            dateadded: new Date(Date.now()),
             completed: false,
         }
         this.db.insert(goal, (err) => {
@@ -36,6 +38,32 @@ class GoalDAO {
                 }
             })
         })
+    }
+    getEntriesByUser(username) { // return every goal for one user
+        return new Promise((resolve, reject) => {
+            this.db.find({user: username}, function(err, entries) {
+                // if error occurs, print to console and reject promise
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                // if no error, return the data
+                } else {
+                    resolve(entries);
+                }
+            })
+        })
+    }
+    removeAll() {
+        return new Promise((resolve, reject) => {
+            this.db.remove({}, {multi: true}, (err, numRemoved) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(numRemoved);
+                    resolve(numRemoved);
+                }
+            });
+        });
     }
 }
 
