@@ -15,11 +15,20 @@ router.get("/login", controller.log_in_page);
 router.post("/login", login, controller.log_in_user);
 router.get("/logout", verify, controller.logout);
 
-// protected pages
+// home page
 router.get("/home", verify, controller.home);
+
+// goals
 router.get("/goals", verify, controller.viewgoals);
 router.get("/goals/add", verify, controller.addgoalpage);
 router.post("/goals/add", verify, controller.addgoal)
+
+// guides
+router.get("/fitness", verify, controller.fitnessguide);
+router.get("/lifestyle", verify, controller.lifestyleguide);
+router.get("/nutrition", verify, controller.nutritionguide);
+
+//trophies - todo
 
 // clear database - for debugging
 router.get("/purge", verify, controller.purgeGoals);

@@ -145,7 +145,7 @@ input, textarea {
     display: inline-block; /* todo - centre element on screen */
 }
 
-div, section, fieldset {
+div, section, fieldset, article {
     border: none;
     &.flex-container {
         display: flex;
@@ -155,6 +155,9 @@ div, section, fieldset {
     &.centre {
         justify-content: center;
         align-items: center;
+    }
+    &.justify {
+        justify-content: space-evenly;
     }
 }
 

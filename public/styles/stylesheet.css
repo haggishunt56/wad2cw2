@@ -158,19 +158,23 @@ input[type=submit]:hover, textarea[type=submit]:hover {
   /* todo - centre element on screen */
 }
 
-div, section, fieldset {
+div, section, fieldset, article {
   border: none;
 }
 
-div.flex-container, section.flex-container, fieldset.flex-container {
+div.flex-container, section.flex-container, fieldset.flex-container, article.flex-container {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
 }
 
-div.centre, section.centre, fieldset.centre {
+div.centre, section.centre, fieldset.centre, article.centre {
   justify-content: center;
   align-items: center;
+}
+
+div.justify, section.justify, fieldset.justify, article.justify {
+  justify-content: space-evenly;
 }
 
 table {

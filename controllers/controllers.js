@@ -164,6 +164,24 @@ exports.addgoal = (req, res) => {
     res.redirect(200, '/goals'); //todo - display message on screen that the goal has been created
 }
 
+exports.fitnessguide = (req, res) => {
+    res.render('guides/fitness', {
+        'title': 'Fitness guide'
+    });
+}
+
+exports.nutritionguide = (req, res) => {
+    res.render('guides/fitness', { // todo - build a real guide
+        'title': 'Nutrition guide'
+    });
+}
+
+exports.lifestyleguide = (req, res) => {
+    res.render('guides/fitness', { // todo - build a real guide
+        'title': 'Lifestyle guide'
+    });
+}
+
 exports.purgeGoals = (req, res) => {
     const db = new goalDao();
     function sleep(ms) {
