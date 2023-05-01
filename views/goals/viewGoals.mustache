@@ -1,6 +1,15 @@
 {{>template/head}}
 
-{{^goals}}No goals added :({{/goals}}
+{{^goals}}
+
+  <section class="flex-container centre">
+    <p class="wellbeing-body">You don't seem to have any goals :(</p><br>
+  </section>
+  <section class="flex-container centre">
+    <p class="wellbeing-body">Add one now using the button below!</p>
+  </section>
+        
+{{/goals}}
 
 {{#goalsExist}}
 <table class="goals">
@@ -16,7 +25,7 @@
 
 {{#goals}}
     <tr>
-      <td><a href="/goals/{{_id}}" class="no-styling">{{name}}</a></td>
+      <td><a href="/goals/{{_id}}" class="">{{name}}</a></td>
       <td>{{dateadded}}</td>
       <td>{{#dateCompleted}}{{.}}{{/dateCompleted}}{{^dateCompleted}}-{{/dateCompleted}}</td>
       <!-- todo - display more fields for larger viewports

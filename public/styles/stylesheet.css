@@ -104,7 +104,7 @@ p.wellbeing-body {
   padding: 0.5rem;
 }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -115,11 +115,11 @@ input, textarea {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-input.readonly, textarea.readonly {
+input.readonly, textarea.readonly, select.readonly {
   background-color: #dcdcdc;
 }
 
-input[type=submit], textarea[type=submit] {
+input[type=submit], textarea[type=submit], select[type=submit] {
   width: 30%;
   background-color: cornflowerblue;
   color: white;
@@ -131,7 +131,7 @@ input[type=submit], textarea[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover, textarea[type=submit]:hover {
+input[type=submit]:hover, textarea[type=submit]:hover, select[type=submit]:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
   background-color: #82b3ff;
 }

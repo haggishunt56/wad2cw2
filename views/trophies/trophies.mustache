@@ -1,0 +1,26 @@
+{{>template/head}}
+    
+    {{^trophiesExist}}
+        <section class="flex-container centre">
+            <p class="wellbeing-body">You don't seem to have any trophies :(</p><br>
+        </section>
+        <section class="flex-container centre">
+            <p class="wellbeing-body">Add one now using the button below!</p>
+        </section>
+    {{/trophiesExist}}
+    
+    {{#trophies}}
+
+    {{user}}
+    {{achievement}}
+    {{difficulty}}
+    {{dateadded}}
+
+    {{/trophies}}
+    
+    <form action="/trophies/add-achievement" method="get">
+    <fieldset class="form-section flex-container centre">
+        <input type="submit" value="Add an achievement">
+    </fieldset>
+</form>
+{{>template/foot}}

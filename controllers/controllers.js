@@ -1,8 +1,10 @@
 const userDao = require('../models/user.js');
-const goalDao = require('../models/goal');
+const goalDao = require('../models/goal.js');
+const trophyDao = require('../models/trophy.js');
 const jwt_decode = require("jwt-decode");
 
-const db = new goalDao();
+const goalDB = new goalDao();
+const trophyDB = new trophyDao();
 
 exports.landing_page = function(req, res) {
     res.render('landing', {
@@ -45,7 +47,7 @@ exports.register_new_user = (req, res) => {
             return;
         }
         userDao.create(username, email, password);
-        res.redirect(200, '/login'); //todo - display message on screen that the account has been created
+        res.status(200).redirect('/login'); //todo - display message on screen that the account has been created
     });
 }
 
@@ -106,7 +108,7 @@ exports.viewgoals = (req, res) => {
     const user = decoded_token.username;
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-    db.getEntriesByUser(user)
+    goalDB.getEntriesByUser(user)
         .then((entries) => {
             let i = 0;
             for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
@@ -160,14 +162,14 @@ exports.addgoal = (req, res) => {
     const description = req.body.description;
     // todo - field validation
 
-    db.create(user, goalname, targetdate, category, description);
-    res.redirect(200, '/goals'); //todo - display message on screen that the goal has been created
+    goalDB.create(user, goalname, targetdate, category, description);
+    res.status(200).redirect('/goals'); //todo - display message on screen that the goal has been created
 }
 
 exports.goaldetails = (req, res) => {
     const id = req.params.id;
     // get goal details
-    db.getEntry(id)
+    goalDB.getEntry(id)
         .then((entry) => {
             res.render("goals/editGoal", {
                 "title": "Edit goal",
@@ -186,7 +188,7 @@ exports.editgoal = (req, res) => {
     const completed = req.body.goalcomplete ? true : false;
     // todo - field validation
 
-    db.edit(id, goalname, targetdate, category, description, completiondate, completed)
+    goalDB.edit(id, goalname, targetdate, category, description, completiondate, completed)
     res.status(200).redirect('/goals');
 }
 
@@ -214,18 +216,91 @@ exports.lifestyleguide = (req, res) => {
     });
 }
 
+exports.trophy = (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    );
+    const user = decoded_token.username;
+    
+    trophyDB.getEntriesByUser(user)
+        .then((entries) => {
+            let i = 0;
+            for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
+                // entry.dateadded = entry.dateadded.toLocaleDateString('en-GB'); // doesn't work - refuses to format as en-GB and always defaults fo en-US.
+                // pad function obtained from StackOverflow as a workaround for toLocaleDateString() not working
+                //source: https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format
+                function pad(n) {return n < 10 ? "0"+n : n;}
+                entry.dateadded = pad(entry.dateadded.getDate())+"/"+pad(entry.dateadded.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                if (entry.datecompleted) {
+                    entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                }
+                entries[i] = entry;
+                i++;
+            }
+            const trophiesExist = entries.length>0 ? true : false;
+
+            console.log(entries)
+            console.log(trophiesExist)
+            res.render("trophies/trophies", {
+                title: "Trophy cabinet",
+                trophies: entries,
+                trophiesExist: trophiesExist
+            });
+        });
+}
+
+exports.achievement = (req, res) => {
+    res.render("trophies/addachievement", {
+        "title": "Add an achievement"
+    });
+}
+
+exports.addachievement = (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    );
+    const user = decoded_token.username;
+    const achievement = req.body.achievement;
+    const difficulty = req.body.difficulty;
+    // todo - field validation
+
+    trophyDB.create(user, achievement, difficulty);
+    res.status(200).redirect('/trophies');
+}
+
 // debugging - to be deleted
 exports.purgeGoals = (req, res) => {
-    const db = new goalDao();
+    const goalDB = new goalDao();
+    const trophyDB = new trophyDao();
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-    db.removeAll();
+    goalDB.removeAll();
+    trophyDB.removeAll();
     res.render('home');
 }
-
 exports.getAllGoals = (req, res) => {
-    db.getAllEntries()
+    goalDB.getAllEntries()
         .then((entries) => {
             let i = 0;
             for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render

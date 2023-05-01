@@ -2,31 +2,31 @@
 
 <form action="/goals/{{goal._id}}" method="post">
     <fieldset class="form-section">
-        <label>Goal name</label>
+        <label for="goalname">Goal name</label>
         <input id="goalname" name="goalname" type="text" maxlength="128" value="{{goal.name}}" required autofocus>
     </fieldset>
     <fieldset class="form-section">
-        <label>Date added</label> <!-- todo - format date -->
+        <label for="dateadded">Date added</label> <!-- todo - format date -->
         <input class="readonly" id="dateadded" name="dateadded" type="text" maxlength="128" value="{{goal.dateadded}}" readonly>
     </fieldset>
     <fieldset class="form-section">
-        <label>Target completion date</label>
+        <label for="targetdate">Target completion date</label>
         <input id="targetdate" name="targetdate" type="text" maxlength="10" value="{{goal.target}}" required>
     </fieldset>
     <fieldset class="form-section">
-        <label>Category</label>
+        <label for="category">Category</label>
         <input id="category" name="category" type="text" maxlength="128" value="{{goal.category}}" required>
     </fieldset>
     <fieldset class="form-section">
-        <label>Goal description</label>
+        <label for="description">Goal description</label>
         <textarea id="description" name="description" maxlength="2000" rows="5" required>{{goal.description}}</textarea>
     </fieldset>
     <fieldset class="form-section">
-        <label>Actual completion date</label>
+        <label for="completiondate">Actual completion date</label>
         <input id="completiondate" name="completiondate" type="text" maxlength="10" value="{{goal.dateCompleted}}">
     </fieldset>
     <fieldset class="form-section">
-        <label>Goal complete</label>
+        <label for="goalcomplete">Goal complete</label>
         {{#goal.completed}}<input type="checkbox" id="goalcomplete" name="goalcomplete" value="complete" checked>{{/goal.completed}}
         {{^goal.completed}}<input type="checkbox" id="goalcomplete" name="goalcomplete" value="complete">{{/goal.completed}}
     </fieldset>

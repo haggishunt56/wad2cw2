@@ -22,9 +22,6 @@ router.get("/home", verify, controller.home);
 router.get("/goals", verify, controller.viewgoals);
 router.get("/goals/add", verify, controller.addgoalpage);
 router.post("/goals/add", verify, controller.addgoal);
-// get all goals - for debugging
-router.get("/goals/all", verify, controller.getAllGoals)
-
 router.get("/goals/:id", verify, controller.goaldetails);
 router.post("/goals/:id", verify, controller.editgoal);
 
@@ -34,12 +31,15 @@ router.get("/guides/fitness", verify, controller.fitnessguide);
 router.get("/guides/lifestyle", verify, controller.lifestyleguide);
 router.get("/guides/nutrition", verify, controller.nutritionguide);
 
-//trophies - todo
+// trophies - todo
+router.get("/trophies", verify, controller.trophy);
+router.get("/trophies/add-achievement", verify, controller.achievement);
+router.post("/trophies/add-achievement", verify, controller.addachievement);
 
 // clear database - for debugging
 router.get("/purge", verify, controller.purgeGoals);
-
-
+// get all goals - for debugging
+router.get("/goals/all", verify, controller.getAllGoals)
 
 // 404 handler
 router.use((req, res) => { 

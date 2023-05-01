@@ -80,7 +80,7 @@ class GoalDAO {
     }
     removeAll() {
         return new Promise((resolve, reject) => {
-            this.db.remove({}, {multi: true}, (err, numRemoved) => {
+            db.remove({}, {multi: true}, (err, numRemoved) => {
                 if (err) {
                     reject(err);
                 } else {

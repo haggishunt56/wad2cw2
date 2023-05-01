@@ -2,19 +2,19 @@
 
 <form action="/goals/add" method="post">
     <fieldset class="form-section">
-        <label>Goal name</label>
+        <label for="goalname">Goal name</label>
         <input id="goalname" name="goalname" type="text" maxlength="128" required autofocus>
     </fieldset>
     <fieldset class="form-section">
-        <label>Target completion date</label>
+        <label for ="targetdate">Target completion date</label>
         <input id="targetdate" name="targetdate" type="text" maxlength="10" required>
     </fieldset>
     <fieldset class="form-section">
-        <label>Category</label>
+        <label for="category">Category</label>
         <input id="category" name="category" type="text" maxlength="128" required>
     </fieldset>
     <fieldset class="form-section">
-        <label>Goal description</label>
+        <label for="description">Goal description</label>
         <textarea id="description" name="description" maxlength="2000" rows="5" required></textarea>
     </fieldset>
     <fieldset class="form-section flex-container centre">

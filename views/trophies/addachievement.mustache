@@ -1,0 +1,21 @@
+{{>template/head}}
+
+<form action="/trophies/add-achievement" method="post">
+    <fieldset class="form-section">
+        <label for="achievement">Achievement</label>
+        <input id="achievement" name="achievement" type="text" maxlength="128" required autofocus>
+    </fieldset>
+    <fieldset class="form-section">
+        <label for="difficulty">Difficulty</label>
+        <select name="difficulty" id="difficulty">
+            <option value="none"></option>
+            <option value="easy">Easy</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="Hard">Hard</option>
+    </fieldset>
+    <fieldset class="form-section flex-container centre">
+        <input type="submit" value="Add achievement">
+    </fieldset>
+</form>
+
+{{>template/foot}}
