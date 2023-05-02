@@ -199,11 +199,12 @@ div, section, fieldset, article, span {
     &.grid {
         display: grid;
         &.trophy-cabinet-1 {
+            margin-top: 2em;
             grid-template-columns: 49% 49%;
             column-gap: 2%;
             grid-column-gap: 2%; /* for compatibility with older browsers */
-            row-gap: 1em;
-            grid-row-gap: 1em; /* for compatibility with older browsers */
+            row-gap: 3em;
+            grid-row-gap: 3em; /* for compatibility with older browsers */
         }
         &.trophy-cabinet-2 {
             grid-template-columns: auto;

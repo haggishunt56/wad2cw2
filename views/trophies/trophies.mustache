@@ -1,5 +1,9 @@
 {{>template/head}}
-    
+    {{#confirmation}}
+        <div class="confirmation flex-container centre">
+            <p class="wellbeing-body">{{confirmation}}</p>
+        </div>
+    {{/confirmation}}
     {{^trophiesExist}}
         <section class="flex-container centre">
             <p class="wellbeing-body">You don't seem to have any trophies :(</p><br>
@@ -13,13 +17,13 @@
         {{#trophies}}
             <section class="grid trophy-cabinet-2">
                 {{#easy}}
-                    <span class="flex-container centre"><img src="images/bronze.png" alt="a clipart picture of a bronze trophy" max-width="100" height="100"></span>
+                    <span class="flex-container centre"><img src="/images/bronze.png" alt="a clipart picture of a bronze trophy" max-width="100" height="100"></span>
                 {{/easy}}
                 {{#medium}}
-                    <span class="flex-container centre"><img src="images/silver.png" alt="a clipart picture of a silver trophy" max-width="100" height="100"></span>
+                    <span class="flex-container centre"><img src="/images/silver.png" alt="a clipart picture of a silver trophy" max-width="100" height="100"></span>
                 {{/medium}}
                 {{#hard}}
-                    <span class="flex-container centre"><img src="images/gold.png" alt="a clipart picture of a gold trophy" max-width="100" height="100"></span>
+                    <span class="flex-container centre"><img src="/images/gold.png" alt="a clipart picture of a gold trophy" max-width="100" height="100"></span>
                 {{/hard}}
                 <span class="flex-container centre"><p>{{achievement}}</p></span>
                 <span class="flex-container centre"><p>{{dateadded}}</p></span>

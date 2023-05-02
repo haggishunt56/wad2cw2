@@ -136,7 +136,6 @@ exports.viewgoals = (req, res) => {
         )
     );
     const user = decoded_token.username;
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
     goalDB.getEntriesByUser(user)
         .then((entries) => {
@@ -192,8 +191,36 @@ exports.addgoal = (req, res) => {
     const description = req.body.description;
     // todo - field validation
 
+    // create goal in database
     goalDB.create(user, goalname, targetdate, category, description);
-    res.status(200).redirect('/goals'); //todo - display message on screen that the goal has been created
+
+    // find all goals and display goals page with confirmation
+    goalDB.getEntriesByUser(user)
+        .then((entries) => {
+            let i = 0;
+            for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
+                // entry.dateadded = entry.dateadded.toLocaleDateString('en-GB'); // doesn't work - refuses to format as en-GB and always defaults fo en-US.
+                // pad function obtained from StackOverflow as a workaround for toLocaleDateString() not working
+                //source: https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format
+                function pad(n) {return n < 10 ? "0"+n : n;}
+                entry.dateadded = pad(entry.dateadded.getDate())+"/"+pad(entry.dateadded.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                if (entry.datecompleted) {
+                    entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                }
+                entries[i] = entry;
+                i++;
+            }
+            const goalsExist = entries.length>0 ? true : false;
+            res.render("goals/viewGoals", {
+                title: "Goals",
+                confirmation: "Goal added!",
+                goalsExist: goalsExist,
+                goals: entries,
+            });
+        })
+        .catch((err) => {
+            console.log("promise rejected", err);
+        });
 }
 
 exports.goaldetails = (req, res) => {
@@ -209,6 +236,20 @@ exports.goaldetails = (req, res) => {
 }
 
 exports.editgoal = (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    );
+    const user = decoded_token.username;
     const id = req.params.id;
     const goalname = req.body.goalname;
     const targetdate = req.body.targetdate;
@@ -218,8 +259,36 @@ exports.editgoal = (req, res) => {
     const completed = req.body.goalcomplete ? true : false;
     // todo - field validation
 
+    // update goal
     goalDB.edit(id, goalname, targetdate, category, description, completiondate, completed)
-    res.status(200).redirect('/goals');
+    
+    // find all goals and display goals page with confirmation
+    goalDB.getEntriesByUser(user)
+    .then((entries) => {
+        let i = 0;
+        for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
+            // entry.dateadded = entry.dateadded.toLocaleDateString('en-GB'); // doesn't work - refuses to format as en-GB and always defaults fo en-US.
+            // pad function obtained from StackOverflow as a workaround for toLocaleDateString() not working
+            //source: https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format
+            function pad(n) {return n < 10 ? "0"+n : n;}
+            entry.dateadded = pad(entry.dateadded.getDate())+"/"+pad(entry.dateadded.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+            if (entry.datecompleted) {
+                entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+            }
+            entries[i] = entry;
+            i++;
+        }
+        const goalsExist = entries.length>0 ? true : false;
+        res.render("goals/viewGoals", {
+            title: "Goals",
+            confirmation: "Goal updated!",
+            goalsExist: goalsExist,
+            goals: entries,
+        });
+    })
+    .catch((err) => {
+        console.log("promise rejected", err);
+    });
 }
 
 exports.guides = (req, res) => {
@@ -324,7 +393,42 @@ exports.addachievement = (req, res) => {
     // todo - field validation
 
     trophyDB.create(user, achievement, difficulty);
-    res.status(200).redirect('/trophies');
+    
+    trophyDB.getEntriesByUser(user)
+        .then((entries) => {
+            let i = 0;
+            for (entry of entries) { // Mustache can't format dates - dates must be formatted in JS before render
+                // entry.dateadded = entry.dateadded.toLocaleDateString('en-GB'); // doesn't work - refuses to format as en-GB and always defaults fo en-US.
+                // pad function obtained from StackOverflow as a workaround for toLocaleDateString() not working
+                //source: https://stackoverflow.com/questions/22719346/tolocaledatestring-is-not-returning-dd-mm-yyyy-format
+                function pad(n) {return n < 10 ? "0"+n : n;}
+                entry.dateadded = pad(entry.dateadded.getDate())+"/"+pad(entry.dateadded.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                if (entry.datecompleted) {
+                    entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
+                }
+
+                // determine difficulty of achievement. Moustache cannot perform logic test other than true/false.
+                // recommend use of another templating engine such as Nunjucks.
+                if (entry.difficulty === 'hard') {
+                    entry.hard = true;
+                } else if (entry.difficulty === 'medium') {
+                    entry.medium = true;
+                } else {
+                    entry.easy = true;
+                }
+
+                entries[i] = entry;
+                i++;
+            }
+            const trophiesExist = entries.length>0 ? true : false;
+            
+            res.render("trophies/trophies", {
+                title: "Trophy cabinet",
+                confirmation: "Achievement added!",
+                trophies: entries,
+                trophiesExist: trophiesExist
+            });
+        });
 }
 
 // debugging - to be deleted

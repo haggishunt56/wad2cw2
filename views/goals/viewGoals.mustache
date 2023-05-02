@@ -1,14 +1,17 @@
 {{>template/head}}
+  {{#confirmation}}
+    <div class="confirmation flex-container centre">
+      <p class="wellbeing-body">{{confirmation}}</p>
+    </div>
+  {{/confirmation}}
 
 {{^goals}}
-
   <section class="flex-container centre">
     <p class="wellbeing-body">You don't seem to have any goals :(</p><br>
   </section>
   <section class="flex-container centre">
     <p class="wellbeing-body">Add one now using the button below!</p>
   </section>
-        
 {{/goals}}
 
 {{#goalsExist}}
