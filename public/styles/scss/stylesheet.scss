@@ -1,3 +1,8 @@
+/*
+    todo - add full compatibility with older browsers.
+    Some compatibility styles added, but more to be explored.
+*/
+
 $mwb-primary: #f9f9f9;
 $mwb-secondary: #dcdcdc;
 $mwb-tertiary: #29C2A3;
@@ -77,6 +82,9 @@ p {
         font-size: 1rem;
         margin-bottom: 1rem;
         color: $mwb-text;
+        &.quote {
+            background-color: $mwb-secondary;
+        }
     }
 }
 
@@ -152,7 +160,7 @@ input, textarea, select {
     display: inline-block; /* todo - centre element on screen */
 }
 
-div, section, fieldset, article {
+div, section, fieldset, article, span {
     border: none;
     &.flex-container {
         display: flex;
@@ -176,13 +184,22 @@ div, section, fieldset, article {
             text-justify: unset;
         }
     }
-    &.sbs {
-        width: 50%;
-        float: left;
-        * {
-            width: 50%;
-            float: left;
+    &.grid {
+        display: grid;
+        &.trophy-cabinet-1 {
+            grid-template-columns: 49% 49%;
+            column-gap: 2%;
+            grid-column-gap: 2%; /* for compatibility with older browsers */
+            row-gap: 1em;
+            grid-row-gap: 1em; /* for compatibility with older browsers */
         }
+        &.trophy-cabinet-2 {
+            grid-template-columns: auto;
+            grid-template-rows: auto auto auto;
+            place-self: center;
+            align-self: start;
+        }
+        
     }
 }
 

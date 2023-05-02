@@ -9,23 +9,25 @@
         </section>
     {{/trophiesExist}}
 
-    {{#trophies}}
-        <section class="sbs">
-        {{#easy}}
-            <p><img src="images/bronze.png" alt="a clipart picture of a bronze trophy" width="100" height="100"></p>
-        {{/easy}}
-        {{#medium}}
-            <img src="images/silver.png" alt="a clipart picture of a silver trophy" width="100" height="100">
-        {{/medium}}
-        {{#hard}}
-            <img src="images/gold.png" alt="a clipart picture of a gold trophy" width="100" height="100">
-        {{/hard}}
-        <p>{{achievement}}</p>
-        <p>{{dateadded}}</p>
-        </section>
-    {{/trophies}}
-    
-    <form action="/trophies/add-achievement" method="get">
+    <section class="grid trophy-cabinet-1">
+        {{#trophies}}
+            <section class="grid trophy-cabinet-2">
+                {{#easy}}
+                    <span class="flex-container centre"><img src="images/bronze.png" alt="a clipart picture of a bronze trophy" max-width="100" height="100"></span>
+                {{/easy}}
+                {{#medium}}
+                    <span class="flex-container centre"><img src="images/silver.png" alt="a clipart picture of a silver trophy" max-width="100" height="100"></span>
+                {{/medium}}
+                {{#hard}}
+                    <span class="flex-container centre"><img src="images/gold.png" alt="a clipart picture of a gold trophy" max-width="100" height="100"></span>
+                {{/hard}}
+                <span class="flex-container centre"><p>{{achievement}}</p></span>
+                <span class="flex-container centre"><p>{{dateadded}}</p></span>
+            </section>
+        {{/trophies}}
+    </section>
+
+    <form action="/trophies/add-achievement" method="get"> {{! todo - change button styling - overflows on smaller viewport}}
         <fieldset class="form-section flex-container centre">
             <input type="submit" value="Add an achievement">
         </fieldset>

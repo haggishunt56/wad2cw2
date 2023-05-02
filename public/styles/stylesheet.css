@@ -1,3 +1,7 @@
+/*
+    todo - add full compatibility with older browsers.
+    Some compatibility styles added, but more to be explored.
+*/
 body {
   background-color: #f9f9f9;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -90,6 +94,10 @@ p.wellbeing-body {
   color: #090909;
 }
 
+p.wellbeing-body.quote {
+  background-color: #dcdcdc;
+}
+
 #appHeader {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0.1rem;
@@ -166,45 +174,56 @@ input[type=submit]:hover, textarea[type=submit]:hover, select[type=submit]:hover
   /* todo - centre element on screen */
 }
 
-div, section, fieldset, article {
+div, section, fieldset, article, span {
   border: none;
 }
 
-div.flex-container, section.flex-container, fieldset.flex-container, article.flex-container {
+div.flex-container, section.flex-container, fieldset.flex-container, article.flex-container, span.flex-container {
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
 }
 
-div.flex-down, section.flex-down, fieldset.flex-down, article.flex-down {
+div.flex-down, section.flex-down, fieldset.flex-down, article.flex-down, span.flex-down {
   flex-direction: column;
 }
 
-div.centre, section.centre, fieldset.centre, article.centre {
+div.centre, section.centre, fieldset.centre, article.centre, span.centre {
   justify-content: center;
   align-items: center;
 }
 
-div.justify, section.justify, fieldset.justify, article.justify {
+div.justify, section.justify, fieldset.justify, article.justify, span.justify {
   justify-content: space-evenly;
   text-align: justify;
   text-justify: inter-word;
 }
 
-div.justify h2, div.justify h3, div.justify h4, div.justify h5, section.justify h2, section.justify h3, section.justify h4, section.justify h5, fieldset.justify h2, fieldset.justify h3, fieldset.justify h4, fieldset.justify h5, article.justify h2, article.justify h3, article.justify h4, article.justify h5 {
+div.justify h2, div.justify h3, div.justify h4, div.justify h5, section.justify h2, section.justify h3, section.justify h4, section.justify h5, fieldset.justify h2, fieldset.justify h3, fieldset.justify h4, fieldset.justify h5, article.justify h2, article.justify h3, article.justify h4, article.justify h5, span.justify h2, span.justify h3, span.justify h4, span.justify h5 {
   justify-content: left;
   text-align: left;
   text-justify: unset;
 }
 
-div.sbs, section.sbs, fieldset.sbs, article.sbs {
-  width: 50%;
-  float: left;
+div.grid, section.grid, fieldset.grid, article.grid, span.grid {
+  display: grid;
 }
 
-div.sbs *, section.sbs *, fieldset.sbs *, article.sbs * {
-  width: 50%;
-  float: left;
+div.grid.trophy-cabinet-1, section.grid.trophy-cabinet-1, fieldset.grid.trophy-cabinet-1, article.grid.trophy-cabinet-1, span.grid.trophy-cabinet-1 {
+  grid-template-columns: 49% 49%;
+  column-gap: 2%;
+  grid-column-gap: 2%;
+  /* for compatibility with older browsers */
+  row-gap: 1em;
+  grid-row-gap: 1em;
+  /* for compatibility with older browsers */
+}
+
+div.grid.trophy-cabinet-2, section.grid.trophy-cabinet-2, fieldset.grid.trophy-cabinet-2, article.grid.trophy-cabinet-2, span.grid.trophy-cabinet-2 {
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  place-self: center;
+  align-self: start;
 }
 
 table {
