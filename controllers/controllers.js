@@ -205,7 +205,7 @@ exports.fitnessguide = (req, res) => {
 }
 
 exports.nutritionguide = (req, res) => {
-    res.render('guides/fitness', { // todo - build a real guide
+    res.render('guides/nutrition', {
         'title': 'Nutrition guide'
     });
 }
