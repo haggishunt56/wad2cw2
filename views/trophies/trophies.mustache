@@ -8,19 +8,26 @@
             <p class="wellbeing-body">Add one now using the button below!</p>
         </section>
     {{/trophiesExist}}
-    
+
     {{#trophies}}
-
-    {{user}}
-    {{achievement}}
-    {{difficulty}}
-    {{dateadded}}
-
+        <section class="sbs">
+        {{#easy}}
+            <p><img src="images/bronze.png" alt="a clipart picture of a bronze trophy" width="100" height="100"></p>
+        {{/easy}}
+        {{#medium}}
+            <img src="images/silver.png" alt="a clipart picture of a silver trophy" width="100" height="100">
+        {{/medium}}
+        {{#hard}}
+            <img src="images/gold.png" alt="a clipart picture of a gold trophy" width="100" height="100">
+        {{/hard}}
+        <p>{{achievement}}</p>
+        <p>{{dateadded}}</p>
+        </section>
     {{/trophies}}
     
     <form action="/trophies/add-achievement" method="get">
-    <fieldset class="form-section flex-container centre">
-        <input type="submit" value="Add an achievement">
-    </fieldset>
-</form>
+        <fieldset class="form-section flex-container centre">
+            <input type="submit" value="Add an achievement">
+        </fieldset>
+    </form>
 {{>template/foot}}

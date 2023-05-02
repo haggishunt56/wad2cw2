@@ -211,7 +211,7 @@ exports.nutritionguide = (req, res) => {
 }
 
 exports.lifestyleguide = (req, res) => {
-    res.render('guides/fitness', { // todo - build a real guide
+    res.render('guides/lifestyle', {
         'title': 'Lifestyle guide'
     });
 }
@@ -244,13 +244,22 @@ exports.trophy = (req, res) => {
                 if (entry.datecompleted) {
                     entry.datecompleted = pad(entry.datecompleted.getDate())+"/"+pad(entry.datecompleted.getMonth()+1)+"/"+entry.dateadded.getFullYear();
                 }
+
+                // determine difficulty of achievement. Moustache cannot perform logic test other than true/false.
+                // recommend use of another templating engine such as Nunjucks.
+                if (entry.difficulty === 'hard') {
+                    entry.hard = true;
+                } else if (entry.difficulty === 'medium') {
+                    entry.medium = true;
+                } else {
+                    entry.easy = true;
+                }
+
                 entries[i] = entry;
                 i++;
             }
             const trophiesExist = entries.length>0 ? true : false;
-
-            console.log(entries)
-            console.log(trophiesExist)
+            
             res.render("trophies/trophies", {
                 title: "Trophy cabinet",
                 trophies: entries,

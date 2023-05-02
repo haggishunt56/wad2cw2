@@ -41,6 +41,10 @@ nav span.flex-item {
   padding: 1.5rem 0;
 }
 
+main {
+  padding: 0 10%;
+}
+
 footer {
   background-color: #dcdcdc;
   padding-top: 1rem;
@@ -185,6 +189,22 @@ div.justify, section.justify, fieldset.justify, article.justify {
   justify-content: space-evenly;
   text-align: justify;
   text-justify: inter-word;
+}
+
+div.justify h2, div.justify h3, div.justify h4, div.justify h5, section.justify h2, section.justify h3, section.justify h4, section.justify h5, fieldset.justify h2, fieldset.justify h3, fieldset.justify h4, fieldset.justify h5, article.justify h2, article.justify h3, article.justify h4, article.justify h5 {
+  justify-content: left;
+  text-align: left;
+  text-justify: unset;
+}
+
+div.sbs, section.sbs, fieldset.sbs, article.sbs {
+  width: 50%;
+  float: left;
+}
+
+div.sbs *, section.sbs *, fieldset.sbs *, article.sbs * {
+  width: 50%;
+  float: left;
 }
 
 table {

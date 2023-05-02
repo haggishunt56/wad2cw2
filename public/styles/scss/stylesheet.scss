@@ -46,6 +46,10 @@ nav {
     
 }
 
+main {
+    padding: 0 10%;
+}
+
 footer {
     background-color: $mwb-secondary;
     padding-top: 1rem;
@@ -166,6 +170,19 @@ div, section, fieldset, article {
         justify-content: space-evenly;
         text-align: justify;
         text-justify: inter-word;
+        h2, h3, h4, h5 {
+            justify-content: left;
+            text-align: left;
+            text-justify: unset;
+        }
+    }
+    &.sbs {
+        width: 50%;
+        float: left;
+        * {
+            width: 50%;
+            float: left;
+        }
     }
 }
 
