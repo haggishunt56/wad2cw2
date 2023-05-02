@@ -1,16 +1,21 @@
 {{>template/head}}
-    <a href="/register">
-        <div class="thin-border display-inline-block">
-            <img src="images/homeimg1.jpg" alt="An image of two women performing warmup excercises" width="300" height="210"/>
-            <p class="wellbeing-body" id="no-styling">Start your wellbeing journey now</p>
-            <p class="wellbeing-body display-link">Register here today</p>
-        </div>
-    </a>
-    <a href="/login">
-        <div class="thin-border display-inline-block">
-            <img src="images/homeimg2.jpeg" alt="An image of a smiling man" width="300" height="210"/>
-            <p class="wellbeing-body" class="no-styling">Already have an account?</p>
-            <p class="wellbeing-body display-link">Log in</p>
-        </div>
-    </a>
+    {{#confirmation}}
+        <p class="wellbeing-body">{{confirmation}}</p>
+    {{/confirmation}}
+    <div class="flex-container centre">
+        <a href="/register">
+            <div class="thin-border display-inline-block">
+                <img src="images/homeimg1.jpg" alt="An image of two women performing warmup excercises" width="300" height="210"/>
+                <p class="wellbeing-body" id="no-styling">Start your wellbeing journey now</p>
+                <p class="wellbeing-body display-link">Register here today</p>
+            </div>
+        </a>
+        <a href="/login">
+            <div class="thin-border display-inline-block">
+                <img src="images/homeimg2.jpeg" alt="An image of a smiling man" width="300" height="210"/>
+                <p class="wellbeing-body" class="no-styling">Already have an account?</p>
+                <p class="wellbeing-body display-link">Log in</p>
+            </div>
+        </a>
+    </div>
 {{>template/foot}}

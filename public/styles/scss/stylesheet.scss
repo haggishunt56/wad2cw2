@@ -184,10 +184,16 @@ div, section, fieldset, article, span {
             text-justify: unset;
         }
     }
-    &.error {
+    &.error { // todo - errors and confirmations don't display correctly on smaller viewports
         border: 2px solid red;
         background-color: #ff000020;
-        padding: 1em 0;
+        padding: 1em 0 0;
+        margin: 0 20%;
+    }
+    &.confirmation {
+        border: 2px solid #00be00;
+        background-color: #00be0020;
+        padding: 1em 0 0;
         margin: 0 20%;
     }
     &.grid {

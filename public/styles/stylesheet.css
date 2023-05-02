@@ -208,7 +208,14 @@ div.justify h2, div.justify h3, div.justify h4, div.justify h5, section.justify 
 div.error, section.error, fieldset.error, article.error, span.error {
   border: 2px solid red;
   background-color: #ff000020;
-  padding: 1em 0;
+  padding: 1em 0 0;
+  margin: 0 20%;
+}
+
+div.confirmation, section.confirmation, fieldset.confirmation, article.confirmation, span.confirmation {
+  border: 2px solid #00be00;
+  background-color: #00be0020;
+  padding: 1em 0 0;
   margin: 0 20%;
 }
 
