@@ -13,7 +13,9 @@ exports.login = function (req, res, next) {
             return res.status(500).render("500");
         } else if (!user) {
             console.log('Incorrect username or password.');
-            return res.status(401).render("404"); // todo - res.render("register") with error message
+            return res.status(401).render("login", {
+                err: "Incorrect username or password. Please try again."
+            });
         } else {
             // compare provided password with stored password
             bcrypt.compare(password, user.password, function (err, result) {
@@ -25,7 +27,9 @@ exports.login = function (req, res, next) {
                     // pass to the callback function
                     next();
                 } else {
-                    return res.render("login"); // todo - display message on page
+                    return res.status(401).render("login", {
+                        err: "Incorrect username or password. Please try again."
+                    });
                 }
             });
         }
@@ -42,7 +46,10 @@ exports.verify = function (req, res, next) {
         const payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
         next();
     } catch(err) {
-        //if an error occurred return request unauthorized error
-        res.status(401).send(); // todo - render a page
+        // if an error occurred, return request unauthorized error
+        // also clear cookie and demand login again, to be safe.
+        res.clearCookie("jwt").status(401).render("login", {
+            err: "Unauthorised action performed. Please log in again."
+        });
     }
 };

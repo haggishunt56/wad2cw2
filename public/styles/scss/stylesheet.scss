@@ -184,6 +184,12 @@ div, section, fieldset, article, span {
             text-justify: unset;
         }
     }
+    &.error {
+        border: 2px solid red;
+        background-color: #ff000020;
+        padding: 1em 0;
+        margin: 0 20%;
+    }
     &.grid {
         display: grid;
         &.trophy-cabinet-1 {

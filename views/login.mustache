@@ -1,4 +1,9 @@
 {{>template/head}}
+    {{#err}}
+        <div class="error flex-container centre">
+            <p class="wellbeing-body">{{err}}</p>
+        </div>
+    {{/err}}
     <form action="/login" method="post">
         <fieldset class="form-section">
             <label for="username">Username</label> {{! todo - change to username OR password}}
