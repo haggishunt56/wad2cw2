@@ -65,7 +65,8 @@ class GoalDAO {
     }
     getNext5Goals(username) {
         return new Promise((resolve, reject) => {
-            db.find({user: username}).sort({targetdate: 1}).limit(5).exec(function(err, entries) {
+            db.find({user: username}).sort({target: 1}).limit(5).exec(function(err, entries) {
+                console.log(entries);
                 // if error occurs, print to console and reject promise
                 if (err) {
                     console.log(err);
