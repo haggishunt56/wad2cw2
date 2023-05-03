@@ -24,6 +24,8 @@ router.get("/goals/add", verify, controller.addgoalpage);
 router.post("/goals/add", verify, controller.addgoal);
 router.get("/goals/:id", verify, controller.goaldetails);
 router.post("/goals/:id", verify, controller.editgoal);
+router.get("/goals/:id/delete", verify, controller.deletegoalpage);
+router.post("/goals/:id/delete", verify, controller.deletegoal);
 
 // guides
 router.get("/guides", verify, controller.guides)

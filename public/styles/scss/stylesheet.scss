@@ -121,7 +121,7 @@ input, textarea, select {
     }
     &[type=submit] {
         width: 30%;
-        background-color: cornflowerblue;
+        background-color: #6495ed;
         color: white;
         font-weight: bold;
         padding: 14px 20px;
@@ -132,6 +132,13 @@ input, textarea, select {
         &:hover {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
             background-color: #82b3ff;
+        }
+        &.delete {
+            background-color: #ff0000;
+            &:hover {
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
+                background-color: #ff6e6e;
+            }
         }
     }
 }

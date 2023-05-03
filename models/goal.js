@@ -92,13 +92,25 @@ class GoalDAO {
             }
         });
     }
+    deleteEntry(id) {
+        return new Promise((resolve, reject) => {
+            db.remove({ _id: id }, {}, function (err, numRemoved) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log(numRemoved + ' records removed');
+                    resolve(numRemoved);
+                }
+            });
+        });
+    }
     removeAll() {
         return new Promise((resolve, reject) => {
             db.remove({}, {multi: true}, (err, numRemoved) => {
                 if (err) {
                     reject(err);
                 } else {
-                    console.log(numRemoved);
+                    console.log(numRemoved + ' records removed');
                     resolve(numRemoved);
                 }
             });

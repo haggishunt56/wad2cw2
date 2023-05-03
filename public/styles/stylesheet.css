@@ -133,7 +133,7 @@ input.readonly, textarea.readonly, select.readonly {
 
 input[type=submit], textarea[type=submit], select[type=submit] {
   width: 30%;
-  background-color: cornflowerblue;
+  background-color: #6495ed;
   color: white;
   font-weight: bold;
   padding: 14px 20px;
@@ -146,6 +146,15 @@ input[type=submit], textarea[type=submit], select[type=submit] {
 input[type=submit]:hover, textarea[type=submit]:hover, select[type=submit]:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
   background-color: #82b3ff;
+}
+
+input[type=submit].delete, textarea[type=submit].delete, select[type=submit].delete {
+  background-color: #ff0000;
+}
+
+input[type=submit].delete:hover, textarea[type=submit].delete:hover, select[type=submit].delete:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 5px 10px -1px inset;
+  background-color: #ff6e6e;
 }
 
 .navbutton {

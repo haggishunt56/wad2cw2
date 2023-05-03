@@ -34,5 +34,10 @@
         <input type="submit" value="Save">
     </fieldset>
 </form>
+<form action="/goals/{{goal._id}}/delete" method="get">
+    <fieldset class="form-section flex-container centre">
+        <input type="submit" value="Delete" class="delete">
+    </fieldset>
+</form>
 
 {{>template/foot}}

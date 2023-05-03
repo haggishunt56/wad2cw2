@@ -296,6 +296,57 @@ exports.editgoal = (req, res) => {
     });
 }
 
+exports.deletegoalpage = (req, res) => {
+    goalDB.getEntry(req.params.id)
+        .then((entry) => {
+            res.render("goals/delete", {
+                "title": "Delete goal",
+                "goalname": entry[0].name,
+                "goalid": req.params.id
+            });
+    });
+}
+
+exports.deletegoal = (req, res) => {
+    const token = req.cookies.jwt;
+    const decoded_token = jwt_decode(
+        token.slice(
+            0,
+            token.indexOf(
+                ".",
+                token.indexOf(
+                    ".",
+                    0
+                )+1
+            )
+        )
+    );
+    const user = decoded_token.username;
+    const id = req.params.id;
+
+    // todo - verify that the user is not deleting another user's goal.
+
+    // delete goal from DB
+    goalDB.deleteEntry(id);
+
+    // get goals and display goals page with success message
+    goalDB.getEntriesByUser(user)
+        .then((entries) => {
+            let i = 0;
+            entries = formatDate(entries);
+            const goalsExist = entries.length>0 ? true : false;
+            res.render("goals/viewGoals", {
+                title: "Goals",
+                confirmation: "Goal deleted!",
+                goalsExist: goalsExist,
+                goals: entries,
+            });
+        })
+        .catch((err) => {
+            console.log("promise rejected", err);
+        });
+}
+
 exports.guides = (req, res) => {
     res.render('guides/guides', {
         'title': 'Guides'

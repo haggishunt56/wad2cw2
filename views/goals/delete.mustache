@@ -1,0 +1,11 @@
+{{>template/head}}
+
+<p class="wellbeing-body">Delete goal "{{goalname}}"? This action cannot be undone!</p>
+
+<form action="/goals/{{goalid}}/delete" method="post">
+    <fieldset class="form-section flex-container centre">
+        <input type="submit" value="Delete" class="delete">
+    </fieldset>
+</form>
+
+{{>template/foot}}
