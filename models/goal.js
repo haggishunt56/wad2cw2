@@ -64,9 +64,18 @@ class GoalDAO {
         })
     }
     getNext5Goals(username) {
+        /*
+            This db query sorts entries on the target date ascending. Meaning, dates furthest in
+            the future will be at the end of the list. It then strips out all but the first 5
+            entries. These are the next goals due for the user, although dates may be in the past
+            depending when they were created.
+            However, "30/01/2023" appears later in the list than "01/05/2023". This is because
+            target dates in goal.db are Strings, not Date objects. In a future iteration, this
+            should be fixed.
+            todo - fix target date field (suggest use MomentJS library to create dates).
+        */
         return new Promise((resolve, reject) => {
             db.find({user: username}).sort({target: 1}).limit(5).exec(function(err, entries) {
-                console.log(entries);
                 // if error occurs, print to console and reject promise
                 if (err) {
                     console.log(err);
@@ -88,7 +97,7 @@ class GoalDAO {
             completed: completed
         } }, { multi: true }, function (err, numReplaced) {
             if (err) {
-                console.log("Can't insert goal: ", goalname);
+                console.log("Can't update goal: ", goalname);
                 reject(err);
             }
         });

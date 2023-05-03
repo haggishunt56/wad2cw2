@@ -101,12 +101,16 @@ exports.log_in_page = (req, res) => {
 
 exports.log_in_user = (req, res) => {
     if (req.cookies) {
-        goalDB.getNext5Goals(req.body.username).then((entries) => {
-            res.render("home", {
-                user: req.body.username,
-                goals: entries
+        goalDB.getNext5Goals(req.body.username)
+            .then((entries) => {
+                entries = formatDate(entries);
+                const goalsExist = entries.length>0 ? true : false;
+                res.render("home", {
+                    user: req.body.username,
+                    goalsExist: goalsExist,
+                    goals: entries
+                });
             });
-        });
     } else {
         // authentication failed
         res.status(401).render("login", {
@@ -219,6 +223,7 @@ exports.addgoal = (req, res) => {
         return;
     }
     // todo - ensure date field is a real date
+    // todo - ensure target date is not in the past
 
     // create goal in database
     goalDB.create(user, goalname, targetdate, category, description);
@@ -292,6 +297,9 @@ exports.editgoal = (req, res) => {
                     err: "Please provide all required fields"
                 });
             });
+            // todo - ensure target date is not in the past
+            // todo - ensure target date and dateCompleted are real dates
+
     } else { // if no validation errors
         // update goal
         goalDB.edit(id, goalname, targetdate, category, description, completiondate, completed);
