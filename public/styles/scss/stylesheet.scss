@@ -22,6 +22,16 @@ header {
     padding-bottom: 1rem;
 }
 
+@media screen and (max-width: 600px) { /* rearrange header for mobile screens */
+    header {
+        position: relative;
+        background-color: $mwb-secondary;
+        h1 {
+            font-size: 1.75em;
+        }
+    }
+}
+
 nav {
     background-color: $mwb-tertiary;
     width: 90%;
@@ -30,12 +40,11 @@ nav {
     
     a {
         color: #090909;
-        height: 1.5rem; /* todo - reduce padding when screen shrinks below 630px */
+        height: 1.5rem;
         padding: 1.5rem 1rem; /* tob&bottom left&right */
         border: 0;
         text-decoration: none;
         margin: 0 0.5rem;
-
         &:hover {
             border-bottom: 0.5rem solid $mwb-primary; /* todo - animate? */
             padding-bottom: 1rem;
@@ -47,8 +56,25 @@ nav {
         height: 1rem;
         padding: 1.5rem 0;        
     }
+}
 
-    
+@media screen and (max-width: 600px) { /* rearrange navbar for mobile screens */
+    nav {
+        width: 100%;
+        height: 3.5rem;
+        padding: 0;
+        
+        a {
+            padding: 1rem 0;
+            &:hover {
+                height: 1rem;
+            }
+        }
+
+        span.flex-item {
+            margin: 0 0.75em;
+        }
+    }
 }
 
 main {
