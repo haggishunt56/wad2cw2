@@ -18,8 +18,7 @@ header {
 @media screen and (max-width: 600px) {
   /* rearrange header for mobile screens */
   header {
-    position: relative;
-    background-color: #dcdcdc;
+    padding: 0;
   }
   header h1 {
     font-size: 1.75em;
@@ -139,7 +138,7 @@ p.wellbeing-body.quote {
 }
 
 .form-section {
-  margin: 1rem 5rem;
+  margin: 1rem 1rem;
   display: block;
   padding: 0.5rem;
 }
@@ -160,7 +159,7 @@ input.readonly, textarea.readonly, select.readonly {
 }
 
 input[type=submit], textarea[type=submit], select[type=submit] {
-  width: 30%;
+  width: 15rem;
   background-color: #6495ed;
   color: white;
   font-weight: bold;
@@ -191,6 +190,7 @@ input[type=submit].delete:hover, textarea[type=submit].delete:hover, select[type
   background-color: cornflowerblue;
   color: white;
   font-weight: bold;
+  text-align: center;
   padding: 14px 20px;
   border: none;
   border-radius: 7px;
