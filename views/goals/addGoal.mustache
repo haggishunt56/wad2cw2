@@ -1,21 +1,30 @@
 {{>template/head}}
-
+    {{#err}}
+        <div class="error flex-container centre">
+            <p class="wellbeing-body">{{err}}</p>
+        </div>
+    {{/err}}
 <form action="/goals/add" method="post">
     <fieldset class="form-section">
         <label for="goalname">Goal name</label>
-        <input id="goalname" name="goalname" type="text" maxlength="128" required autofocus>
+        <input id="goalname" name="goalname" type="text" maxlength="128" value="{{goalname}}" required autofocus>
     </fieldset>
     <fieldset class="form-section">
         <label for ="targetdate">Target completion date</label>
-        <input id="targetdate" name="targetdate" type="text" maxlength="10" required>
+        <input id="targetdate" name="targetdate" type="text" maxlength="10" value="{{targetdate}}" required>
     </fieldset>
     <fieldset class="form-section">
         <label for="category">Category</label>
-        <input id="category" name="category" type="text" maxlength="128" required>
+        <select name="category" id="category">
+            <option value="none"></option>
+            <option value="nutrition">Nutrition</option>
+            <option value="fitness">Fitness</option>
+            <option value="lifestyle">Healthy lifestyle</option>
+        </select>
     </fieldset>
     <fieldset class="form-section">
         <label for="description">Goal description</label>
-        <textarea id="description" name="description" maxlength="2000" rows="5" required></textarea>
+        <textarea id="description" name="description" maxlength="2000" rows="5" required>{{description}}</textarea>
     </fieldset>
     <fieldset class="form-section flex-container centre">
         <input type="submit" value="Create goal">

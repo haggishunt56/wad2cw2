@@ -189,7 +189,20 @@ exports.addgoal = (req, res) => {
     const targetdate = req.body.targetdate;
     const category = req.body.category;
     const description = req.body.description;
-    // todo - field validation
+
+    // validate fields
+    if (!goalname || ! targetdate || category==='none' || !description) {
+        res.render("goals/addGoal", {
+            'title': 'Add a goal',
+            goalname: goalname,
+            targetdate: targetdate,
+            category: category,
+            description: description,
+            err: "Please complete all fields."
+        });
+        return;
+    }
+    // todo - ensure date field is a real date
 
     // create goal in database
     goalDB.create(user, goalname, targetdate, category, description);
@@ -390,10 +403,22 @@ exports.addachievement = (req, res) => {
     const user = decoded_token.username;
     const achievement = req.body.achievement;
     const difficulty = req.body.difficulty;
-    // todo - field validation
 
+    // validate fields
+    if (!achievement || difficulty === 'none') {
+        res.render("trophies/addachievement", {
+            'title': 'Add an achievement',
+            achievement: achievement,
+            difficulty: difficulty,
+            err: "Please complete all fields."
+        });
+        return;
+    }
+
+    // create achievement in database
     trophyDB.create(user, achievement, difficulty);
     
+    // get achievements for user and display in trophy cabinet page
     trophyDB.getEntriesByUser(user)
         .then((entries) => {
             let i = 0;

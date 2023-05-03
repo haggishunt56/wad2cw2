@@ -1,9 +1,13 @@
 {{>template/head}}
-
+    {{#err}}
+        <div class="error flex-container centre">
+            <p class="wellbeing-body">{{err}}</p>
+        </div>
+    {{/err}}
 <form action="/trophies/add-achievement" method="post">
     <fieldset class="form-section">
         <label for="achievement">Achievement</label>
-        <input id="achievement" name="achievement" type="text" maxlength="128" required autofocus>
+        <input id="achievement" name="achievement" type="text" maxlength="128" value="{{achievement}}" required autofocus>
     </fieldset>
     <fieldset class="form-section">
         <label for="difficulty">Difficulty</label>
@@ -12,6 +16,7 @@
             <option value="easy">Easy</option>
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
+        </select>
     </fieldset>
     <fieldset class="form-section flex-container centre">
         <input type="submit" value="Add achievement">
