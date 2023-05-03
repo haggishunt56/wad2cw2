@@ -1,10 +1,41 @@
 {{>template/head}}
+
     <section id="upcoming-goals">
-    <p>Welcome, {{user}}! What would you like to do today?</p>
+        <p class="wellbeing-body">Welcome, {{user}}{{^user}}user{{/user}}!</p>
     </section>
+
     <section>
-            <!--Todo: upcoming goals-->
+        <h2>Upcoming goals</h2>
+            {{#goalsExist}}
+                <table class="goals">
+                    <thead>
+                        <tr>
+                            <th>Goal</th>
+                            <th>Date added</th>
+                            <th>Date due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            {{/goalsExist}}
+
+            {{#goals}}
+                        <tr>
+                            <td><a href="/goals/{{_id}}" class="">{{name}}</a></td>
+                            <td>{{dateadded}}</td>
+                            <td>{{#target}}{{.}}{{/target}}{{^target}}-{{/target}}</td>
+                        </tr>
+            {{/goals}}
+
+            {{#goalsExist}}
+                    </tbody>
+                </table>
+            {{/goalsExist}}
     </section>
+
+    <section>
+        What would you like to do today?
+    </section>
+
     <section class="flex-container centre">
         <div class="flex-item">
             <a href="/goals">
@@ -56,4 +87,5 @@
             </a>
         </div>
     </section>
+
 {{>template/foot}}

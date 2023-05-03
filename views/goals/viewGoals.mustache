@@ -15,34 +15,33 @@
 {{/goals}}
 
 {{#goalsExist}}
-<table class="goals">
-  <thead>
-    <tr>
-      <th>Goal</th>
-      <th>Date added</th>
-      <th>Date completed</th>
-    </tr>
-  </thead>
-  <tbody>
+  <table class="goals">
+    <thead>
+      <tr>
+        <th>Goal</th>
+        <th>Date added</th>
+        <th>Date completed</th>
+      </tr>
+    </thead>
+    <tbody>
 {{/goalsExist}}
 
 {{#goals}}
-    <tr>
-      <td><a href="/goals/{{_id}}" class="">{{name}}</a></td>
-      <td>{{dateadded}}</td>
-      <td>{{#dateCompleted}}{{.}}{{/dateCompleted}}{{^dateCompleted}}-{{/dateCompleted}}</td>
-      <!-- todo - display more fields for larger viewports
-      <td>{{target}}</td>
-      <td>{{category}}</td>
-      <td>{{description}}</td>
-      <td>{{completed}}</td> }}-->
-      
-    </tr>
-  
+      <tr>
+        <td><a href="/goals/{{_id}}" class="">{{name}}</a></td>
+        <td>{{dateadded}}</td>
+        <td>{{#dateCompleted}}{{.}}{{/dateCompleted}}{{^dateCompleted}}-{{/dateCompleted}}</td>
+        <!-- todo - display more fields for larger viewports
+        <td>{{target}}</td>
+        <td>{{category}}</td>
+        <td>{{description}}</td>
+        <td>{{completed}}</td> }}-->
+      </tr>
 {{/goals}}
+
 {{#goalsExist}}
-</tbody>
-</table>
+    </tbody>
+  </table>
 {{/goalsExist}}
 
 <form action="/goals/add" method="get">
@@ -50,6 +49,5 @@
         <input type="submit" value="Add a goal">
     </fieldset>
 </form>
-
 
 {{>template/foot}}

@@ -63,6 +63,20 @@ class GoalDAO {
             })
         })
     }
+    getNext5Goals(username) {
+        return new Promise((resolve, reject) => {
+            db.find({user: username}).sort({targetdate: 1}).limit(5).exec(function(err, entries) {
+                // if error occurs, print to console and reject promise
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                // if no error, return the data
+                } else {
+                    resolve(entries);
+                }
+            });
+        });
+    }
     edit(id, goalname, targetdate, category, description, completiondate, completed) {
         db.update({ _id: id }, { $set: {
             name: goalname,
