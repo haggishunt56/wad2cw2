@@ -139,8 +139,6 @@ exports.home = (req, res) => {
     const user = decoded_token.username;
     goalDB.getNext5Goals(user).then((entries) => {
         entries = formatDate(entries);
-        console.log(entries);
-
         const goalsExist = entries.length>0 ? true : false;
         res.render("home", {
             user: user,
@@ -228,8 +226,7 @@ exports.addgoal = (req, res) => {
     // find all goals and display goals page with confirmation
     goalDB.getEntriesByUser(user)
         .then((entries) => {
-            let i = 0;
-            
+            entries = formatDate(entries);            
             const goalsExist = entries.length>0 ? true : false;
             res.render("goals/viewGoals", {
                 title: "Goals",

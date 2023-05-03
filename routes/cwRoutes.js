@@ -39,7 +39,7 @@ router.post("/trophies/add-achievement", verify, controller.addachievement);
 // clear database - for debugging
 router.get("/purge", verify, controller.purgeGoals);
 // get all goals - for debugging
-router.get("/goals/all", verify, controller.getAllGoals)
+router.get("/viewallgoals", verify, controller.getAllGoals)
 
 // 404 handler
 router.use((req, res) => { 
