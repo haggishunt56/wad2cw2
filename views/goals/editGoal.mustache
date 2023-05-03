@@ -15,7 +15,12 @@
     </fieldset>
     <fieldset class="form-section">
         <label for="category">Category</label>
-        <input id="category" name="category" type="text" maxlength="128" value="{{goal.category}}" required>
+        <select name="category" id="category">
+            <option value="none"></option>
+            <option value="nutrition">Nutrition</option>
+            <option value="fitness">Fitness</option>
+            <option value="lifestyle">Healthy lifestyle</option>
+        </select>
     </fieldset>
     <fieldset class="form-section">
         <label for="description">Goal description</label>

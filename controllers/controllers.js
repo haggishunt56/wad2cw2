@@ -207,7 +207,7 @@ exports.addgoal = (req, res) => {
     const description = req.body.description;
 
     // validate fields
-    if (!goalname || ! targetdate || category==='none' || !description) {
+    if (!goalname || !targetdate || category==='none' || !description) {
         res.render("goals/addGoal", {
             'title': 'Add a goal',
             goalname: goalname,
@@ -274,26 +274,44 @@ exports.editgoal = (req, res) => {
     const description = req.body.description;
     const completiondate = req.body.completiondate;
     const completed = req.body.goalcomplete ? true : false;
-    // todo - field validation
-
-    // update goal
-    goalDB.edit(id, goalname, targetdate, category, description, completiondate, completed)
     
-    // find all goals and display goals page with confirmation
-    goalDB.getEntriesByUser(user)
-    .then((entries) => {
-        entries = formatDate(entries);
-        const goalsExist = entries.length>0 ? true : false;
-        res.render("goals/viewGoals", {
-            title: "Goals",
-            confirmation: "Goal updated!",
-            goalsExist: goalsExist,
-            goals: entries,
-        });
-    })
-    .catch((err) => {
-        console.log("promise rejected", err);
-    });
+    // field validation - check for empty required fields and if present, render edit page again with details submitted.
+    if(!goalname || !targetdate || category==='none' || !description) {
+        goalDB.getEntry(id)
+            .then((entry) => {
+                entry[0].name=goalname;
+                entry[0].target=targetdate;
+                entry[0].category=category;
+                entry[0].description=description;
+                entry[0].dateCompleted=completiondate;
+                entry[0].completed=completed;
+
+                return res.render("goals/editGoal", {
+                    "title": "Edit goal",
+                    "goal": entry[0],
+                    err: "Please provide all required fields"
+                });
+            });
+    } else { // if no validation errors
+        // update goal
+        goalDB.edit(id, goalname, targetdate, category, description, completiondate, completed);
+        
+        // find all goals and display goals page with confirmation
+        goalDB.getEntriesByUser(user)
+            .then((entries) => {
+                entries = formatDate(entries);
+                const goalsExist = entries.length>0 ? true : false;
+                res.render("goals/viewGoals", {
+                    title: "Goals",
+                    confirmation: "Goal updated!",
+                    goalsExist: goalsExist,
+                    goals: entries,
+                });
+            })
+            .catch((err) => {
+                console.log("promise rejected", err);
+            });
+    }
 }
 
 exports.deletegoalpage = (req, res) => {
