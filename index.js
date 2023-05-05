@@ -29,10 +29,6 @@ const mustache = require('mustache-express');
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 
-// instantiate database
-const nedb = require('nedb');
-const db = new nedb({filename:'users.db', autoload:true});
-
 // create routes file
 const applicationRouter = require('./routes/cwRoutes');
 app.use('/', applicationRouter); 
@@ -41,4 +37,3 @@ app.use('/', applicationRouter);
 app.listen(3000, () => {
     console.log('Server started on port 3000. Ctrl^c to quit.');
 })
-

@@ -1,11 +1,12 @@
 const nedb = require("nedb");
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
+const path = require('path');
 
 class UserDAO {
     constructor() {
         try {
-            this.db = new nedb({filename:'users.db', autoload:true});
+            this.db = new nedb({filename: path.join(__dirname, 'users.db'), autoload:true});
         } catch(err) {
             console.log(err)
         }
