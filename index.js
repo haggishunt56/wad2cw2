@@ -33,7 +33,8 @@ app.set('view engine', 'mustache');
 const applicationRouter = require('./routes/cwRoutes');
 app.use('/', applicationRouter); 
 
-// start server
+// create favicon
+app.use('/favicon.ico', express.static('images/favicon.ico'));
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Server started on port 3000. Ctrl^c to quit.');
