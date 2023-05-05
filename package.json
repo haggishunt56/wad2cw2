@@ -4,6 +4,7 @@
   "description": "Git repository for Web Application Development 2 coursework submission",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
