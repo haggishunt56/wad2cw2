@@ -5,7 +5,7 @@ const SALT_ROUNDS = 10;
 class UserDAO {
     constructor() {
         try {
-            this.db = new nedb({filename:'./users.db', autoload:true});
+            this.db = new nedb({filename:'users.db', autoload:true});
         } catch(err) {
             console.log(err)
         }

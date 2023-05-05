@@ -1,5 +1,5 @@
 const nedb = require("nedb");
-const db = new nedb({filename:'./goal.db', autoload:true});
+const db = new nedb({filename:'goal.db', autoload:true});
 
 class GoalDAO {
     constructor() {}
