@@ -1,4 +1,6 @@
 const nedb = require("nedb");
+const path = require('path');
+
 const db = new nedb({filename: path.join(__dirname, 'trophy.db'), autoload:true});
 
 class TrophyDAO {
