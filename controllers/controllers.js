@@ -508,30 +508,3 @@ exports.addachievement = (req, res) => {
             });
         });
 }
-
-// debugging - to be deleted
-exports.purgeGoals = (req, res) => {
-    const goalDB = new goalDao();
-    const trophyDB = new trophyDao();
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-    goalDB.removeAll();
-    trophyDB.removeAll();
-    res.render('home');
-}
-exports.getAllGoals = (req, res) => {
-    goalDB.getAllEntries()
-        .then((entries) => {
-            entries = formatDate(entries);
-            const goalsExist = entries.length>0 ? true : false;
-            res.render("goals/viewGoals", {
-                title: "Goals",
-                goalsExist: goalsExist,
-                goals: entries,
-            });
-        })
-        .catch((err) => {
-            console.log("promise rejected", err);
-        });
-}
